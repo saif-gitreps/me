@@ -1069,7 +1069,7 @@
          </section>
 
          <!-- ABOUT -->
-         <section id="about">
+         <section id="about" class="visible">
             <div class="section-label">Chapter I — About</div>
             <h2 class="section-title">A Brief Introduction.</h2>
             <div class="about-grid">
@@ -1144,7 +1144,7 @@
          </section>
 
          <!-- PROJECTS -->
-         <section id="projects">
+         <section id="projects" class="visible">
             <div class="section-label">Chapter II — Selected Works</div>
             <h2 class="section-title">Projects &amp; Experiments.</h2>
             <div class="projects-grid">
@@ -1393,7 +1393,7 @@
          </section>
 
          <!-- EXPERIENCE -->
-         <section id="experience">
+         <section id="experience" class="visible">
             <div class="section-label">Chapter III — Experience</div>
             <h2 class="section-title">A Working Timeline.</h2>
             <div class="timeline">
@@ -1479,7 +1479,7 @@
          </section>
 
          <!-- PUBLICATIONS -->
-         <section id="publications">
+         <section id="publications" class="visible">
             <div class="section-label">Chapter IV — Publications</div>
             <h2 class="section-title">Selected Writings.</h2>
             <div class="pub">
@@ -1511,7 +1511,7 @@
          </section>
 
          <!-- CV -->
-         <section id="cv">
+         <section id="cv" class="visible">
             <div class="section-label">Chapter V — Curriculum Vitae</div>
             <h2 class="section-title">The Long Form.</h2>
             <div class="cv-actions">
@@ -1538,7 +1538,7 @@
          </section>
 
          <!-- CONTACT -->
-         <section id="contact">
+         <section id="contact" class="visible">
             <div class="section-label">Chapter VI — Correspondence</div>
             <h2 class="section-title">Get in Touch.</h2>
             <div class="contact-grid">
@@ -1680,20 +1680,6 @@
                { rootMargin: "-40% 0px -55% 0px", threshold: 0 },
             );
             sections.forEach((s) => navObs.observe(s));
-
-            // Fade-in on enter
-            const fadeObs = new IntersectionObserver(
-               (entries) => {
-                  entries.forEach((e) => {
-                     if (e.isIntersecting) {
-                        e.target.classList.add("visible");
-                        fadeObs.unobserve(e.target);
-                     }
-                  });
-               },
-               { threshold: 0.08 },
-            );
-            sections.forEach((s) => fadeObs.observe(s));
          })();
       </script>
    </body>
