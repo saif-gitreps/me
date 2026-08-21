@@ -1,0 +1,1757 @@
+<!doctype html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>Projects — Saifur Rahman</title>
+      <meta
+         name="description"
+         content="Portfolio of Saifur Rahman — Software Engineer (.NET & JavaScript). Projects, experience, publications, and CV."
+      />
+      <link rel="preconnect" href="https://fonts.googleapis.com" />
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+      <link
+         href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap"
+         rel="stylesheet"
+      />
+      <style>
+         :root {
+            --bg: #fbfbfa;
+            --surface: #ffffff;
+            --ink: #1a1a1a;
+            --muted: #6b6b6b;
+            --faint: #9a9a94;
+            --line: #e6e5e1;
+            --accent: #223b7e;
+            --accent-soft: #edf1fc;
+
+            --nav-bg: rgba(255, 255, 255, 0.6);
+            --nav-border: rgba(255, 255, 255, 0.7);
+            --nav-bg-mobile: rgba(255, 255, 255, 1);
+            --nav-inset: rgba(255, 255, 255, 0.55);
+            --nav-hover: rgba(26, 26, 26, 0.05);
+
+            --footer-bg: #000000;
+            --footer-ink: #f2f2f2;
+            --footer-muted: #a8a8a8;
+
+            --sans: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+            --mono: "IBM Plex Mono", ui-monospace, monospace;
+            --maxw: 780px;
+         }
+         [data-theme="dark"] {
+            --bg: #262626;
+            --surface: #313131;
+            --ink: #f2f2f2;
+            --muted: #b9b9b9;
+            --faint: #8d8d8d;
+            --line: #3f3f3f;
+            --accent: #85a4ff;
+            --accent-soft: rgba(133, 164, 255, 0.14);
+
+            --nav-bg: rgba(28, 28, 28, 0.55);
+            --nav-border: rgba(255, 255, 255, 0.08);
+            --nav-bg-mobile: rgba(28, 28, 28, 0.9);
+            --nav-inset: rgba(255, 255, 255, 0.06);
+            --nav-hover: rgba(255, 255, 255, 0.08);
+
+            --footer-bg: #1c1c1c;
+            --footer-ink: #f2f2f2;
+            --footer-muted: #9b9b9b;
+         }
+         * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+         }
+         html {
+            scroll-behavior: smooth;
+         }
+         body {
+            background: var(--bg);
+            color: var(--ink);
+            font-family: var(--sans);
+            font-size: 16px;
+            line-height: 1.65;
+            -webkit-font-smoothing: antialiased;
+            transition:
+               background 0.25s ease,
+               color 0.25s ease;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+         }
+         a {
+            color: inherit;
+            text-decoration: none;
+         }
+         img {
+            max-width: 100%;
+            display: block;
+         }
+         button {
+            font-family: inherit;
+         }
+
+         /* ---------- NAVBAR (glass) ---------- */
+         .nav-wrap {
+            position: fixed;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1000;
+
+            background: var(--nav-bg);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            backdrop-filter: blur(20px) saturate(180%);
+            border: 1px solid var(--nav-border);
+            box-shadow:
+               0 10px 30px rgba(0, 0, 0, 0.08),
+               inset 0 1px 0 var(--nav-inset);
+            transition:
+               background 0.25s ease,
+               border-color 0.25s ease;
+            width: 100%;
+         }
+         .nav {
+            padding: 8px 10px 8px 18px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 18px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+         }
+         .logo {
+            font-weight: 700;
+            font-size: 0.95rem;
+            letter-spacing: -0.01em;
+            white-space: nowrap;
+         }
+         .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+         }
+         .nav-links {
+            display: flex;
+            gap: 2px;
+            list-style: none;
+         }
+         .nav-links a {
+            position: relative;
+            display: inline-block;
+            padding: 8px 13px;
+            border-radius: 10px;
+            font-size: 0.83rem;
+            font-weight: 500;
+            color: var(--muted);
+            transition:
+               background 0.18s ease,
+               color 0.18s ease,
+               box-shadow 0.18s ease;
+         }
+         .nav-links a:hover {
+            color: var(--ink);
+            background: var(--nav-hover);
+            box-shadow:
+               inset 0 1px 1px rgba(255, 255, 255, 0.5),
+               0 2px 6px rgba(0, 0, 0, 0.05);
+         }
+         .nav-links a.active {
+            color: var(--accent);
+            background: var(--accent-soft);
+            font-weight: 600;
+         }
+
+         /* theme dropdown */
+         .theme-switch {
+            position: relative;
+         }
+         .theme-btn {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            background: transparent;
+            border: 1px solid var(--nav-border);
+            color: var(--muted);
+            border-radius: 10px;
+            padding: 7px 9px;
+            cursor: pointer;
+            transition:
+               background 0.18s ease,
+               color 0.18s ease;
+         }
+         .theme-btn:hover {
+            background: var(--nav-hover);
+            color: var(--ink);
+         }
+         .theme-btn svg {
+            display: block;
+         }
+         .theme-menu {
+            position: absolute;
+            top: calc(100% + 8px);
+            right: 0;
+            list-style: none;
+            min-width: 130px;
+            background: var(--nav-bg);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            backdrop-filter: blur(20px) saturate(180%);
+            border: 1px solid var(--nav-border);
+            border-radius: 12px;
+            box-shadow:
+               0 12px 28px rgba(0, 0, 0, 0.12),
+               inset 0 1px 0 var(--nav-inset);
+            padding: 6px;
+            opacity: 0;
+            transform: translateY(-6px) scale(0.98);
+            pointer-events: none;
+            transition:
+               opacity 0.16s ease,
+               transform 0.16s ease;
+         }
+         .theme-menu.open {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+            pointer-events: auto;
+         }
+         .theme-menu li {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 10px;
+            border-radius: 8px;
+            font-size: 0.83rem;
+            color: var(--muted);
+            cursor: pointer;
+            transition:
+               background 0.15s ease,
+               color 0.15s ease;
+         }
+         .theme-menu li:hover {
+            background: var(--nav-hover);
+            color: var(--ink);
+         }
+         .theme-menu li.selected {
+            color: var(--accent);
+            font-weight: 600;
+         }
+
+         .hamburger {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            width: 34px;
+            height: 34px;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 5px;
+            padding: 0;
+         }
+         .hamburger span {
+            display: block;
+            width: 18px;
+            height: 1.6px;
+            background: var(--ink);
+            transition:
+               transform 0.25s,
+               opacity 0.25s;
+         }
+         .hamburger.open span:nth-child(1) {
+            transform: translateY(6.5px) rotate(45deg);
+         }
+         .hamburger.open span:nth-child(2) {
+            opacity: 0;
+         }
+         .hamburger.open span:nth-child(3) {
+            transform: translateY(-6.5px) rotate(-45deg);
+         }
+
+         /* ---------- LAYOUT ---------- */
+         main {
+            max-width: var(--maxw);
+            margin: 0 auto;
+            padding: 0 24px;
+            flex: 1 0 auto;
+            width: 100%;
+         }
+         .page-head {
+            padding-top: 80px;
+            padding-bottom: 8px;
+         }
+         section {
+            padding: 44px 0 76px;
+         }
+         .eyebrow {
+            font-family: var(--mono);
+            font-size: 0.75rem;
+            letter-spacing: 0.06em;
+            color: var(--faint);
+            margin-bottom: 10px;
+         }
+         .section-title {
+            font-weight: 700;
+            font-size: 1.7rem;
+            letter-spacing: -0.01em;
+            margin-bottom: 8px;
+         }
+         .section-sub {
+            color: var(--muted);
+            font-size: 0.95rem;
+            margin-bottom: 36px;
+            max-width: 520px;
+         }
+
+         /* ---------- HERO / ABOUT (home) ---------- */
+         .hero-name {
+            font-weight: 800;
+            font-size: clamp(2rem, 5.5vw, 2.9rem);
+            letter-spacing: -0.03em;
+            line-height: 1.1;
+            margin-bottom: 12px;
+         }
+         .hero-role {
+            font-size: 1.05rem;
+            color: var(--muted);
+            margin-bottom: 22px;
+         }
+         .hero-bio {
+            max-width: 100%;
+            color: var(--muted);
+            margin-bottom: 26px;
+         }
+         .hero-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px 18px;
+            font-size: 0.92rem;
+            margin-bottom: 40px;
+         }
+         .hero-links a {
+            color: var(--accent);
+            border-bottom: 1px solid transparent;
+         }
+         .hero-links a:hover {
+            border-bottom-color: var(--accent);
+         }
+         .stats-row {
+            display: flex;
+            gap: 32px;
+            flex-wrap: wrap;
+         }
+         .stat {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+         }
+         .stat .num {
+            font-weight: 700;
+            font-size: 1.35rem;
+            letter-spacing: -0.01em;
+         }
+         .stat .label {
+            font-size: 0.78rem;
+            color: var(--faint);
+            font-family: var(--mono);
+         }
+
+         .about-block {
+            border-top: 1px solid var(--line);
+            padding-top: 56px;
+            margin-top: 8px;
+         }
+         .bio p {
+            margin-bottom: 16px;
+            color: var(--ink);
+         }
+         .bio p:last-child {
+            margin-bottom: 0;
+         }
+         .skills {
+            margin-top: 36px;
+         }
+         .skill-group {
+            margin-bottom: 16px;
+            display: flex;
+            gap: 14px;
+            align-items: baseline;
+            flex-wrap: wrap;
+         }
+         .skill-group:last-child {
+            margin-bottom: 0;
+         }
+         .skill-group h4 {
+            font-family: var(--mono);
+            font-size: 0.72rem;
+            color: var(--faint);
+            width: 92px;
+            flex-shrink: 0;
+            font-weight: 500;
+         }
+         .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 7px;
+         }
+         .tag {
+            background: var(--accent-soft);
+            color: var(--accent);
+            padding: 3px 10px;
+            border-radius: 5px;
+            font-size: 0.8rem;
+            font-weight: 500;
+         }
+
+         /* ---------- PROJECTS TOOLBAR ---------- */
+         .projects-toolbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 16px;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+         }
+         .tabs {
+            display: flex;
+            gap: 4px;
+            overflow-x: auto;
+            scrollbar-width: none;
+            flex: 1 1 auto;
+         }
+         .tabs::-webkit-scrollbar {
+            display: none;
+         }
+         .tab {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            white-space: nowrap;
+            background: transparent;
+            border: 1px solid transparent;
+            color: var(--muted);
+            padding: 7px 12px;
+            border-radius: 9px;
+            font-size: 0.82rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition:
+               background 0.15s ease,
+               color 0.15s ease;
+         }
+         .tab:hover {
+            background: var(--accent-soft);
+            color: var(--ink);
+         }
+         .tab.active {
+            background: var(--accent-soft);
+            color: var(--accent);
+            font-weight: 600;
+         }
+         .view-toggle {
+            display: flex;
+            gap: 2px;
+            border: 1px solid var(--line);
+            border-radius: 9px;
+            padding: 3px;
+            flex-shrink: 0;
+         }
+         .view-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 32px;
+            height: 28px;
+            background: transparent;
+            border: none;
+            border-radius: 6px;
+            color: var(--faint);
+            cursor: pointer;
+            transition:
+               background 0.15s ease,
+               color 0.15s ease;
+         }
+         .view-btn:hover {
+            color: var(--ink);
+         }
+         .view-btn.active {
+            background: var(--surface);
+            color: var(--accent);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+         }
+
+         /* ---------- PROJECTS: CARD VIEW ---------- */
+         .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+         }
+         .card {
+            background: var(--surface);
+            border: 1px solid var(--line);
+            border-radius: 10px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transition:
+               border-color 0.18s ease,
+               transform 0.18s ease,
+               box-shadow 0.18s ease;
+         }
+         .card:hover {
+            border-color: var(--accent);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 24px rgba(0, 0, 0, 0.08);
+         }
+         .card-header {
+            position: relative;
+            height: 148px;
+            overflow: hidden;
+            border-bottom: 1px solid var(--line);
+         }
+         .card-header-img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: grayscale(20%);
+            transition: transform 0.35s ease;
+         }
+         .card:hover .card-header-img {
+            transform: scale(1.04);
+         }
+         .card-header-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+               to bottom,
+               rgba(0, 0, 0, 0.04) 35%,
+               rgba(0, 0, 0, 0.72) 100%
+            );
+         }
+         .card-header-content {
+            position: absolute;
+            inset: 0;
+            padding: 14px 16px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+         }
+         .card-header h3 {
+            font-weight: 700;
+            font-size: 1.05rem;
+            letter-spacing: -0.01em;
+            color: #fdfdfc;
+            text-shadow: 0 1px 6px rgba(0, 0, 0, 0.45);
+            margin-bottom: 9px;
+         }
+         .card .stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+         }
+         .card .stack span {
+            font-family: var(--mono);
+            font-size: 0.62rem;
+            font-weight: 500;
+            letter-spacing: 0.03em;
+            color: #fdfdfc;
+            background: rgba(255, 255, 255, 0.14);
+            border: 1px solid rgba(255, 255, 255, 0.32);
+            padding: 2px 7px;
+            border-radius: 4px;
+            backdrop-filter: blur(2px);
+         }
+         .card-body {
+            padding: 16px 20px 20px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+         }
+         .card p {
+            font-size: 0.92rem;
+            color: var(--muted);
+            margin-bottom: 16px;
+            flex-grow: 1;
+         }
+         .card-actions {
+            display: flex;
+            gap: 18px;
+            font-size: 0.85rem;
+            font-weight: 600;
+         }
+         .card-actions a {
+            color: var(--accent);
+         }
+         .card-actions a:hover {
+            text-decoration: underline;
+         }
+
+         /* ---------- PROJECTS: LIST VIEW ---------- */
+         .projects-list {
+            display: flex;
+            flex-direction: column;
+            border-top: 1px solid var(--line);
+         }
+         .list-row {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            padding: 16px 6px;
+            border-bottom: 1px solid var(--line);
+            transition: background 0.15s ease;
+         }
+         .list-row:hover {
+            background: var(--accent-soft);
+         }
+         .list-thumb {
+            width: 56px;
+            height: 56px;
+            display: none;
+            border-radius: 8px;
+            overflow: hidden;
+            flex-shrink: 0;
+            border: 1px solid var(--line);
+         }
+         .list-thumb img {
+            width: 100%;
+            height: 100%;
+            display: none;
+            object-fit: cover;
+            filter: grayscale(15%);
+         }
+         .list-main {
+            flex: 1 1 auto;
+            min-width: 0;
+         }
+         .list-main h3 {
+            font-size: 0.98rem;
+            font-weight: 700;
+            margin-bottom: 3px;
+         }
+         .list-main p {
+            font-size: 0.85rem;
+            color: var(--muted);
+            margin-bottom: 6px;
+         }
+         .list-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+         }
+         .list-stack span {
+            font-family: var(--mono);
+            font-size: 0.62rem;
+            color: var(--muted);
+            background: var(--bg);
+            border: 1px solid var(--line);
+            padding: 1px 6px;
+            border-radius: 4px;
+         }
+         .list-actions {
+            display: flex;
+            gap: 14px;
+
+            font-size: 0.82rem;
+            font-weight: 600;
+            flex-shrink: 0;
+         }
+         .list-actions a {
+            color: var(--accent);
+         }
+         .list-actions a:hover {
+            text-decoration: underline;
+         }
+         .empty-state {
+            padding: 40px 6px;
+            text-align: center;
+            color: var(--faint);
+            font-size: 0.9rem;
+         }
+
+         .pjt-git-link {
+            font-size: 0.88rem;
+            color: var(--muted);
+            margin-top: 28px;
+         }
+         .pjt-git-link a {
+            color: var(--accent);
+         }
+         .pjt-git-link a:hover {
+            text-decoration: underline;
+         }
+
+         /* ---------- EXPERIENCE ---------- */
+         .timeline {
+            display: flex;
+            flex-direction: column;
+            gap: 34px;
+         }
+         .tl-item {
+            border-left: 2px solid var(--line);
+            padding-left: 22px;
+         }
+         .tl-company {
+            font-weight: 700;
+            font-size: 1.02rem;
+         }
+         .tl-role {
+            font-family: var(--mono);
+            font-size: 0.78rem;
+            color: var(--muted);
+            margin-top: 4px;
+         }
+         .tl-date {
+            font-size: 0.78rem;
+            color: var(--faint);
+            margin: 6px 0 12px;
+         }
+         .tl-item ul {
+            list-style: none;
+         }
+         .tl-item li {
+            padding-left: 16px;
+            position: relative;
+            margin-bottom: 7px;
+            font-size: 0.92rem;
+            color: var(--muted);
+         }
+         .tl-item li::before {
+            content: "\2013";
+            position: absolute;
+            left: 0;
+            color: var(--faint);
+         }
+
+         /* ---------- PUBLICATIONS ---------- */
+         .pub {
+            border-left: 2px solid var(--accent);
+            padding-left: 20px;
+         }
+         .pub-title {
+            font-weight: 700;
+            font-size: 1.08rem;
+            margin-bottom: 8px;
+            line-height: 1.35;
+         }
+         .pub-authors {
+            font-size: 0.92rem;
+            color: var(--muted);
+            margin-bottom: 4px;
+         }
+         .pub-main-author {
+            color: var(--ink);
+            font-weight: 600;
+         }
+         .pub-venue {
+            font-size: 0.88rem;
+            color: var(--muted);
+            font-style: italic;
+            margin-bottom: 8px;
+         }
+         .pub-meta {
+            font-family: var(--mono);
+            font-size: 0.78rem;
+            color: var(--faint);
+         }
+         .pub-meta a {
+            color: var(--accent);
+         }
+         .pub-meta a:hover {
+            text-decoration: underline;
+         }
+
+         /* ---------- CV ---------- */
+         .cv-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+            flex-wrap: wrap;
+            gap: 16px;
+         }
+         .cv-actions p {
+            color: var(--muted);
+            font-size: 0.92rem;
+            max-width: 420px;
+         }
+         .btn-download {
+            background: var(--ink);
+            color: var(--bg);
+            border: none;
+            border-radius: 7px;
+            padding: 11px 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition:
+               background 0.15s ease,
+               color 0.15s ease;
+         }
+         .btn-download:hover {
+            background: var(--accent);
+            color: #fff;
+         }
+         .cv-frame-container {
+            width: 100%;
+         }
+         .cv-frame {
+            width: 100%;
+            height: 620px;
+            border: 1px solid var(--line);
+            border-radius: 10px;
+            background: var(--surface);
+         }
+         .cv-note {
+            font-size: 0.82rem;
+            color: var(--faint);
+            margin-top: 12px;
+            text-align: center;
+         }
+
+         /* ---------- CONTACT ---------- */
+         .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 48px;
+         }
+         .contact-info p.intro {
+            color: var(--muted);
+            margin-bottom: 22px;
+         }
+         .ci-list {
+            display: flex;
+            flex-direction: column;
+         }
+         .ci-row {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 14px 0;
+            border-bottom: 1px solid var(--line);
+         }
+         .ci-row:last-child {
+            border-bottom: none;
+         }
+         .ci-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            background: var(--accent-soft);
+            color: var(--accent);
+            flex-shrink: 0;
+         }
+         .ci-label {
+            font-family: var(--mono);
+            font-size: 0.72rem;
+            color: var(--faint);
+            margin-bottom: 3px;
+         }
+         .ci-value {
+            font-size: 0.98rem;
+            font-weight: 600;
+         }
+         .ci-value a:hover {
+            text-decoration: underline;
+         }
+
+         form {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+         }
+         form label {
+            font-size: 0.78rem;
+            color: var(--muted);
+            margin-bottom: -6px;
+         }
+         form input,
+         form textarea {
+            background: var(--surface);
+            border: 1px solid var(--line);
+            border-radius: 7px;
+            padding: 11px 13px;
+            font-family: var(--sans);
+            font-size: 0.92rem;
+            color: var(--ink);
+            outline: none;
+            transition: border-color 0.15s;
+         }
+         form input:focus,
+         form textarea:focus {
+            border-color: var(--accent);
+         }
+         form textarea {
+            min-height: 120px;
+            resize: vertical;
+         }
+         form button {
+            background: var(--ink);
+            color: var(--bg);
+            border: none;
+            border-radius: 7px;
+            padding: 12px;
+            font-size: 0.88rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition:
+               background 0.15s,
+               color 0.15s;
+         }
+         form button:hover {
+            background: var(--accent);
+            color: #fff;
+         }
+
+         /* ---------- FOOTER ---------- */
+         footer {
+            background: var(--footer-bg);
+            color: var(--footer-ink);
+            margin-top: 40px;
+            transition: background 0.25s ease;
+         }
+         .footer-inner {
+            max-width: var(--maxw);
+            margin: 0 auto;
+            padding: 40px 24px 34px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 18px;
+            text-align: center;
+         }
+         .f-name {
+            font-weight: 700;
+            font-size: 1rem;
+         }
+         .f-contact {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px 22px;
+         }
+         .f-contact a,
+         .f-contact span {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            font-size: 0.82rem;
+            color: var(--footer-muted);
+            transition: color 0.15s ease;
+         }
+         .f-contact a:hover {
+            color: var(--footer-ink);
+         }
+         .f-meta {
+            font-size: 0.76rem;
+            color: var(--footer-muted);
+         }
+
+         /* ---------- RESPONSIVE ---------- */
+         @media (max-width: 700px) {
+            .contact-grid {
+               grid-template-columns: 1fr;
+               gap: 32px;
+            }
+            section {
+               padding: 36px 0 56px;
+            }
+            .skill-group {
+               flex-direction: column;
+               gap: 8px;
+            }
+            .skill-group h4 {
+               width: auto;
+            }
+         }
+         @media (max-width: 640px) {
+            .hamburger {
+               display: flex;
+            }
+            .nav-links {
+               position: fixed;
+               top: 55px;
+               left: 14px;
+               right: 14px;
+               background: var(--nav-bg-mobile);
+               backdrop-filter: blur(20px) saturate(180%);
+               border: 1px solid var(--nav-border);
+               border-radius: 14px;
+               flex-direction: column;
+               gap: 2px;
+               padding: 10px;
+               max-height: 0;
+               overflow: hidden;
+               opacity: 0;
+               transition:
+                  max-height 0.3s ease,
+                  opacity 0.2s ease;
+               box-shadow: 0 14px 30px rgba(0, 0, 0, 0.14);
+            }
+            .nav-links.open {
+               max-height: 400px;
+               opacity: 1;
+            }
+            .nav-links li {
+               width: 100%;
+            }
+            .nav-links a {
+               display: block;
+               width: 100%;
+               padding: 12px 14px;
+            }
+            .cv-frame {
+               height: 420px;
+            }
+            .page-head {
+               padding-top: 70px;
+            }
+         }
+      </style>
+   </head>
+   <body>
+      <div class="nav-wrap">
+         <nav class="nav" aria-label="Primary">
+            <a href="index.html" class="logo">Saifur Rahman</a>
+            <ul class="nav-links" id="navLinks">
+               <li><a href="index.html">Home</a></li>
+               <li><a href="projects.html" class="active">Projects</a></li>
+               <li><a href="experience.html">Experience</a></li>
+               <li><a href="publications.html">Publications</a></li>
+               <li><a href="cv.html">CV</a></li>
+               <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <div class="nav-right">
+               <div class="theme-switch">
+                  <button
+                     class="theme-btn"
+                     id="themeToggleBtn"
+                     aria-haspopup="listbox"
+                     aria-expanded="false"
+                  >
+                     <span id="themeIconWrap"
+                        ><svg
+                           viewBox="0 0 18 18"
+                           width="16"
+                           height="16"
+                           fill="none"
+                           stroke="currentColor"
+                           stroke-width="1.4"
+                           stroke-linecap="round"
+                        >
+                           <circle cx="9" cy="9" r="3.4" />
+                           <path
+                              d="M9 1.6v1.6M9 14.8v1.6M2.6 9H1M17 9h-1.6M4 4l1.1 1.1M12.9 12.9L14 14M14 4l-1.1 1.1M5.1 12.9L4 14"
+                           /></svg
+                     ></span>
+                     <svg
+                        viewBox="0 0 18 18"
+                        width="11"
+                        height="11"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="1.6"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                     >
+                        <path d="M4.5 6.75L9 11.25l4.5-4.5" />
+                     </svg>
+                  </button>
+                  <ul class="theme-menu" id="themeMenu" role="listbox">
+                     <li role="option" data-value="light" class="selected">
+                        <svg
+                           viewBox="0 0 18 18"
+                           width="16"
+                           height="16"
+                           fill="none"
+                           stroke="currentColor"
+                           stroke-width="1.4"
+                           stroke-linecap="round"
+                        >
+                           <circle cx="9" cy="9" r="3.4" />
+                           <path
+                              d="M9 1.6v1.6M9 14.8v1.6M2.6 9H1M17 9h-1.6M4 4l1.1 1.1M12.9 12.9L14 14M14 4l-1.1 1.1M5.1 12.9L4 14"
+                           /></svg
+                        ><span>Light</span>
+                     </li>
+                     <li role="option" data-value="dark">
+                        <svg
+                           viewBox="0 0 18 18"
+                           width="16"
+                           height="16"
+                           fill="none"
+                           stroke="currentColor"
+                           stroke-width="1.4"
+                           stroke-linejoin="round"
+                        >
+                           <path
+                              d="M15.5 10.6A6.8 6.8 0 117.4 2.5a5.4 5.4 0 108.1 8.1z"
+                           /></svg
+                        ><span>Dark</span>
+                     </li>
+                  </ul>
+               </div>
+               <button
+                  class="hamburger"
+                  id="hamburger"
+                  aria-label="Toggle menu"
+                  aria-expanded="false"
+               >
+                  <span></span><span></span><span></span>
+               </button>
+            </div>
+         </nav>
+      </div>
+
+      <main>
+         <section class="page-head">
+            <div class="projects-toolbar">
+               <div class="tabs" role="tablist">
+                  <button class="tab active" data-cat="all">
+                     <svg viewBox="0 0 18 18" width="15" height="15">
+                        <path
+                           d="M9 1.5l1.7 3.6 3.9.5-2.9 2.7.7 3.9L9 10.3l-3.4 1.9.7-3.9-2.9-2.7 3.9-.5L9 1.5z"
+                           fill="none"
+                           stroke="currentColor"
+                           stroke-width="1.3"
+                           stroke-linejoin="round"
+                        /></svg
+                     ><span>All</span>
+                  </button>
+
+                  <button class="tab" data-cat="games">
+                     <svg
+                        viewBox="0 0 18 18"
+                        width="15"
+                        height="15"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="1.3"
+                     >
+                        <rect x="1.6" y="5.5" width="14.8" height="8" rx="4" />
+                        <path d="M5.4 8v3M3.9 9.5h3" stroke-linecap="round" />
+                        <circle
+                           cx="12"
+                           cy="8.2"
+                           r=".9"
+                           fill="currentColor"
+                           stroke="none"
+                        />
+                        <circle
+                           cx="13.6"
+                           cy="10.4"
+                           r=".9"
+                           fill="currentColor"
+                           stroke="none"
+                        /></svg
+                     ><span>Games</span>
+                  </button>
+               </div>
+               <div class="view-toggle" role="group" aria-label="Layout">
+                  <button class="view-btn active" data-view="card" aria-label="Card view">
+                     <svg
+                        viewBox="0 0 18 18"
+                        width="15"
+                        height="15"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="1.3"
+                     >
+                        <rect x="2" y="2" width="6" height="6" rx="1" />
+                        <rect x="10" y="2" width="6" height="6" rx="1" />
+                        <rect x="2" y="10" width="6" height="6" rx="1" />
+                        <rect x="10" y="10" width="6" height="6" rx="1" />
+                     </svg>
+                  </button>
+                  <button class="view-btn" data-view="list" aria-label="List view">
+                     <svg
+                        viewBox="0 0 18 18"
+                        width="15"
+                        height="15"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="1.3"
+                        stroke-linecap="round"
+                     >
+                        <path d="M5.5 4.5h10M5.5 9h10M5.5 13.5h10" />
+                        <circle
+                           cx="2.2"
+                           cy="4.5"
+                           r=".9"
+                           fill="currentColor"
+                           stroke="none"
+                        />
+                        <circle
+                           cx="2.2"
+                           cy="9"
+                           r=".9"
+                           fill="currentColor"
+                           stroke="none"
+                        />
+                        <circle
+                           cx="2.2"
+                           cy="13.5"
+                           r=".9"
+                           fill="currentColor"
+                           stroke="none"
+                        />
+                     </svg>
+                  </button>
+               </div>
+            </div>
+
+            <div class="projects-grid" id="cardView">
+               <article class="card project-item" data-cat="frontend">
+                  <div class="card-header">
+                     <img
+                        class="card-header-img"
+                        src="image1.webp"
+                        alt="Content Gallery preview"
+                     />
+                     <div class="card-header-overlay"></div>
+                     <div class="card-header-content">
+                        <h3>Content Gallery</h3>
+                        <div class="stack">
+                           <span>React</span><span>Redux</span><span>Appwrite</span
+                           ><span>R.Query</span>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="card-body">
+                     <p>
+                        Pinterest-style photo sharing app with image editing, infinite
+                        scroll, optimistic UI updates, and an Appwrite backend.
+                     </p>
+                     <div class="card-actions">
+                        <a target="_blank" href="https://content-gallery-pro.vercel.app/"
+                           >View demo &rarr;</a
+                        ><a
+                           target="_blank"
+                           href="https://github.com/saif-gitreps/Content-Gallery"
+                           >Source code</a
+                        >
+                     </div>
+                  </div>
+               </article>
+               <article class="card project-item" data-cat="fullstack">
+                  <div class="card-header">
+                     <img
+                        class="card-header-img"
+                        src="image2.webp"
+                        alt="Light Inn preview"
+                     />
+                     <div class="card-header-overlay"></div>
+                     <div class="card-header-content">
+                        <h3>Light Inn</h3>
+                        <div class="stack">
+                           <span>TypeScript</span><span>Express.js</span
+                           ><span>Stripe</span>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="card-body">
+                     <p>
+                        A hotel booking app — search, filter, and book places to stay, or
+                        list your own property and earn from it.
+                     </p>
+                     <div class="card-actions">
+                        <a target="_blank" href="https://light-inn.vercel.app/"
+                           >View demo &rarr;</a
+                        ><a
+                           target="_blank"
+                           href="https://github.com/saif-gitreps/Light-Inn"
+                           >Source code</a
+                        >
+                     </div>
+                  </div>
+               </article>
+               <article class="card project-item" data-cat="fullstack">
+                  <div class="card-header">
+                     <img
+                        class="card-header-img"
+                        src="test-image2.webp"
+                        alt="ReelDash preview"
+                     />
+                     <div class="card-header-overlay"></div>
+                     <div class="card-header-content">
+                        <h3>ReelDash</h3>
+                        <div class="stack">
+                           <span>Next.js</span><span>Cloudinary</span><span>MongoDB</span
+                           ><span>Render</span>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="card-body">
+                     <p>
+                        A short-video sharing app where users become creators, publish
+                        clips, and scroll a smooth reel feed.
+                     </p>
+                     <div class="card-actions">
+                        <a target="_blank" href="https://reel-dash-frontend.vercel.app/"
+                           >View demo &rarr;</a
+                        ><a
+                           target="_blank"
+                           href="https://github.com/saif-gitreps/ReelDash-Frontend"
+                           >Source code</a
+                        >
+                     </div>
+                  </div>
+               </article>
+               <article class="card project-item" data-cat="games frontend">
+                  <div class="card-header">
+                     <img
+                        class="card-header-img"
+                        src="image5.webp"
+                        alt="Chess Game preview"
+                     />
+                     <div class="card-header-overlay"></div>
+                     <div class="card-header-content">
+                        <h3>Chess Game</h3>
+                        <div class="stack">
+                           <span>WebSocket</span><span>Multiplayer</span
+                           ><span>Tailwind CSS</span>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="card-body">
+                     <p>
+                        Built from scratch to test my logic — full move rules for every
+                        piece, checkmate detection, undo, and castling, playable locally
+                        or online in real time.
+                     </p>
+                     <div class="card-actions">
+                        <a target="_blank" href="https://chess-from-scratch.vercel.app/"
+                           >View demo &rarr;</a
+                        ><a target="_blank" href="https://github.com/saif-gitreps/Chess"
+                           >Source code</a
+                        >
+                     </div>
+                  </div>
+               </article>
+               <article class="card project-item" data-cat="backend">
+                  <div class="card-header">
+                     <img
+                        class="card-header-img"
+                        src="image6.webp"
+                        alt="StockBook preview"
+                     />
+                     <div class="card-header-overlay"></div>
+                     <div class="card-header-content">
+                        <h3>StockBook</h3>
+                        <div class="stack">
+                           <span>ASP.NET Web API</span><span>PostgreSQL</span
+                           ><span>Entity FW.</span>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="card-body">
+                     <p>
+                        Lets investors track holdings, analyze stocks, build a portfolio,
+                        and discuss trades with other users.
+                     </p>
+                     <div class="card-actions">
+                        <a
+                           target="_blank"
+                           href="https://github.com/saif-gitreps/StockBook"
+                           >Source code</a
+                        >
+                     </div>
+                  </div>
+               </article>
+               <article class="card project-item" data-cat="ai games">
+                  <div class="card-header">
+                     <img
+                        class="card-header-img"
+                        src="image4.webp"
+                        alt="Self Learning Car Sim preview"
+                     />
+                     <div class="card-header-overlay"></div>
+                     <div class="card-header-content">
+                        <h3>Self Learning Car Sim</h3>
+                        <div class="stack">
+                           <span>Neural Network</span><span>JavaScript</span
+                           ><span>Vercel</span>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="card-body">
+                     <p>
+                        A car that learns to drive using a genetic algorithm over a
+                        population of neural networks — best generation saved by hand.
+                     </p>
+                     <div class="card-actions">
+                        <a
+                           target="_blank"
+                           href="https://self-learning-car-simulation.vercel.app/"
+                           >View demo &rarr;</a
+                        ><a
+                           target="_blank"
+                           href="https://github.com/saif-gitreps/Self-Learning-Car-Simulation"
+                           >Source code</a
+                        >
+                     </div>
+                  </div>
+               </article>
+               <div class="empty-state" id="cardEmpty" style="display: none">
+                  No projects in this category yet.
+               </div>
+            </div>
+
+            <div class="projects-list" id="listView" style="display: none">
+               <div class="list-row project-item" data-cat="frontend">
+                  <div class="list-thumb">
+                     <img src="image1.webp" alt="Content Gallery preview" />
+                  </div>
+                  <div class="list-main">
+                     <h3>Content Gallery</h3>
+                     <p>
+                        Pinterest-style photo sharing app with image editing, infinite
+                        scroll, optimistic UI updates, and an Appwrite backend.
+                     </p>
+                     <div class="list-stack">
+                        <span>React</span><span>Redux</span><span>Appwrite</span
+                        ><span>R.Query</span>
+                     </div>
+                  </div>
+                  <div class="list-actions">
+                     <a target="_blank" href="https://content-gallery-pro.vercel.app/"
+                        >View demo &rarr;</a
+                     ><a
+                        target="_blank"
+                        href="https://github.com/saif-gitreps/Content-Gallery"
+                        >Source</a
+                     >
+                  </div>
+               </div>
+               <div class="list-row project-item" data-cat="fullstack">
+                  <div class="list-thumb">
+                     <img src="image2.webp" alt="Light Inn preview" />
+                  </div>
+                  <div class="list-main">
+                     <h3>Light Inn</h3>
+                     <p>
+                        A hotel booking app — search, filter, and book places to stay, or
+                        list your own property and earn from it.
+                     </p>
+                     <div class="list-stack">
+                        <span>TypeScript</span><span>Express.js</span><span>Stripe</span>
+                     </div>
+                  </div>
+                  <div class="list-actions">
+                     <a target="_blank" href="https://light-inn.vercel.app/"
+                        >View demo &rarr;</a
+                     ><a target="_blank" href="https://github.com/saif-gitreps/Light-Inn"
+                        >Source</a
+                     >
+                  </div>
+               </div>
+               <div class="list-row project-item" data-cat="fullstack">
+                  <div class="list-thumb">
+                     <img src="test-image2.webp" alt="ReelDash preview" />
+                  </div>
+                  <div class="list-main">
+                     <h3>ReelDash</h3>
+                     <p>
+                        A short-video sharing app where users become creators, publish
+                        clips, and scroll a smooth reel feed.
+                     </p>
+                     <div class="list-stack">
+                        <span>Next.js</span><span>Cloudinary</span><span>MongoDB</span
+                        ><span>Render</span>
+                     </div>
+                  </div>
+                  <div class="list-actions">
+                     <a target="_blank" href="https://reel-dash-frontend.vercel.app/"
+                        >View demo &rarr;</a
+                     ><a
+                        target="_blank"
+                        href="https://github.com/saif-gitreps/ReelDash-Frontend"
+                        >Source</a
+                     >
+                  </div>
+               </div>
+               <div class="list-row project-item" data-cat="games frontend">
+                  <div class="list-thumb">
+                     <img src="image5.webp" alt="Chess Game preview" />
+                  </div>
+                  <div class="list-main">
+                     <h3>Chess Game</h3>
+                     <p>
+                        Built from scratch to test my logic — full move rules for every
+                        piece, checkmate detection, undo, and castling, playable locally
+                        or online in real time.
+                     </p>
+                     <div class="list-stack">
+                        <span>WebSocket</span><span>Multiplayer</span
+                        ><span>Tailwind CSS</span>
+                     </div>
+                  </div>
+                  <div class="list-actions">
+                     <a target="_blank" href="https://chess-from-scratch.vercel.app/"
+                        >View demo &rarr;</a
+                     ><a target="_blank" href="https://github.com/saif-gitreps/Chess"
+                        >Source</a
+                     >
+                  </div>
+               </div>
+               <div class="list-row project-item" data-cat="backend">
+                  <div class="list-thumb">
+                     <img src="image6.webp" alt="StockBook preview" />
+                  </div>
+                  <div class="list-main">
+                     <h3>StockBook</h3>
+                     <p>
+                        Lets investors track holdings, analyze stocks, build a portfolio,
+                        and discuss trades with other users.
+                     </p>
+                     <div class="list-stack">
+                        <span>ASP.NET Web API</span><span>PostgreSQL</span
+                        ><span>Entity FW.</span>
+                     </div>
+                  </div>
+                  <div class="list-actions">
+                     <a target="_blank" href="https://github.com/saif-gitreps/StockBook"
+                        >Source</a
+                     >
+                  </div>
+               </div>
+               <div class="list-row project-item" data-cat="ai games">
+                  <div class="list-thumb">
+                     <img src="image4.webp" alt="Self Learning Car Sim preview" />
+                  </div>
+                  <div class="list-main">
+                     <h3>Self Learning Car Sim</h3>
+                     <p>
+                        A car that learns to drive using a genetic algorithm over a
+                        population of neural networks — best generation saved by hand.
+                     </p>
+                     <div class="list-stack">
+                        <span>Neural Network</span><span>JavaScript</span
+                        ><span>Vercel</span>
+                     </div>
+                  </div>
+                  <div class="list-actions">
+                     <a
+                        target="_blank"
+                        href="https://self-learning-car-simulation.vercel.app/"
+                        >View demo &rarr;</a
+                     ><a
+                        target="_blank"
+                        href="https://github.com/saif-gitreps/Self-Learning-Car-Simulation"
+                        >Source</a
+                     >
+                  </div>
+               </div>
+               <div class="empty-state" id="listEmpty" style="display: none">
+                  No projects in this category yet.
+               </div>
+            </div>
+
+            <p class="pjt-git-link">
+               More projects on
+               <a target="_blank" href="https://github.com/saif-gitreps?tab=repositories"
+                  >GitHub</a
+               >.
+            </p>
+         </section>
+      </main>
+
+      <footer>
+         <div class="footer-inner">
+            <div class="f-name">Saifur Rahman</div>
+            <div class="f-contact">
+               <a href="mailto:saifrahman3092@gmail.com"
+                  ><svg
+                     viewBox="0 0 18 18"
+                     width="15"
+                     height="15"
+                     fill="none"
+                     stroke="currentColor"
+                     stroke-width="1.3"
+                  >
+                     <rect x="1.8" y="3.6" width="14.4" height="10.8" rx="1.6" />
+                     <path
+                        d="M2.4 4.5l6.6 5 6.6-5"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                     /></svg
+                  ><span>saifrahman3092@gmail.com</span></a
+               >
+               <a
+                  target="_blank"
+                  href="https://www.linkedin.com/in/saifur-rahman-4184b3244/"
+                  ><svg
+                     viewBox="0 0 18 18"
+                     width="15"
+                     height="15"
+                     fill="none"
+                     stroke="currentColor"
+                     stroke-width="1.3"
+                  >
+                     <rect x="1.8" y="1.8" width="14.4" height="14.4" rx="2.4" />
+                     <path d="M6.1 7.4v5.6M6.1 5.2v.05" stroke-linecap="round" />
+                     <path
+                        d="M9 12.9V9.6c0-1 .8-1.8 1.8-1.8s1.8.8 1.8 1.8v3.3"
+                        stroke-linecap="round"
+                     /></svg
+                  ><span>LinkedIn</span></a
+               >
+               <a target="_blank" href="https://github.com/saif-gitreps"
+                  ><svg
+                     viewBox="0 0 18 18"
+                     width="15"
+                     height="15"
+                     fill="none"
+                     stroke="currentColor"
+                     stroke-width="1.3"
+                     stroke-linejoin="round"
+                  >
+                     <path
+                        d="M9 1.6a7.4 7.4 0 00-2.3 14.4c.4.07.5-.16.5-.36v-1.4c-2 .44-2.5-.5-2.6-.94-.1-.24-.5-.94-.8-1.13-.3-.16-.7-.55 0-.56.6 0 1.1.6 1.2.86.7 1.2 1.9.86 2.4.65.06-.5.27-.86.5-1.06-1.7-.2-3.4-.86-3.4-3.8 0-.84.3-1.53.8-2.07-.08-.2-.35-1 .08-2.1 0 0 .65-.2 2.15.8a7 7 0 013.9 0c1.5-1 2.15-.8 2.15-.8.43 1.1.16 1.9.08 2.1.5.54.8 1.23.8 2.07 0 2.95-1.7 3.6-3.4 3.8.28.24.53.7.53 1.42v2.1c0 .2.1.43.5.36A7.4 7.4 0 009 1.6z"
+                     /></svg
+                  ><span>GitHub</span></a
+               >
+               <span
+                  ><svg
+                     viewBox="0 0 18 18"
+                     width="15"
+                     height="15"
+                     fill="none"
+                     stroke="currentColor"
+                     stroke-width="1.3"
+                  >
+                     <path
+                        d="M9 16.4S3.8 11.4 3.8 7.4a5.2 5.2 0 1110.4 0c0 4-5.2 9-5.2 9z"
+                     />
+                     <circle cx="9" cy="7.3" r="1.9" /></svg
+                  ><span>Bangladesh</span></span
+               >
+            </div>
+            <div class="f-meta">
+               &copy; 2026 Saifur Rahman &middot; Thanks for stopping by.
+            </div>
+         </div>
+      </footer>
+
+      <script>
+         (function () {
+            // theme
+            var root = document.documentElement;
+            var themeBtn = document.getElementById("themeToggleBtn");
+            var themeMenu = document.getElementById("themeMenu");
+            var iconWrap = document.getElementById("themeIconWrap");
+            var ICONS = {
+               light: '<svg viewBox="0 0 18 18" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><circle cx="9" cy="9" r="3.4"/><path d="M9 1.6v1.6M9 14.8v1.6M2.6 9H1M17 9h-1.6M4 4l1.1 1.1M12.9 12.9L14 14M14 4l-1.1 1.1M5.1 12.9L4 14"/></svg>',
+               dark: '<svg viewBox="0 0 18 18" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"><path d="M15.5 10.6A6.8 6.8 0 117.4 2.5a5.4 5.4 0 108.1 8.1z"/></svg>',
+            };
+            function getStoredTheme() {
+               try {
+                  return localStorage.getItem("theme");
+               } catch (e) {
+                  return null;
+               }
+            }
+            function storeTheme(v) {
+               try {
+                  localStorage.setItem("theme", v);
+               } catch (e) {}
+            }
+            function applyTheme(theme) {
+               root.setAttribute("data-theme", theme === "dark" ? "dark" : "light");
+               iconWrap.innerHTML = ICONS[theme === "dark" ? "dark" : "light"];
+               themeMenu.querySelectorAll("li").forEach(function (li) {
+                  li.classList.toggle("selected", li.dataset.value === theme);
+               });
+               storeTheme(theme);
+            }
+            applyTheme(getStoredTheme() || "light");
+            themeBtn.addEventListener("click", function (e) {
+               e.stopPropagation();
+               var open = themeMenu.classList.toggle("open");
+               themeBtn.setAttribute("aria-expanded", open);
+            });
+            themeMenu.querySelectorAll("li").forEach(function (li) {
+               li.addEventListener("click", function () {
+                  applyTheme(li.dataset.value);
+                  themeMenu.classList.remove("open");
+                  themeBtn.setAttribute("aria-expanded", "false");
+               });
+            });
+            document.addEventListener("click", function () {
+               themeMenu.classList.remove("open");
+               themeBtn.setAttribute("aria-expanded", "false");
+            });
+
+            // mobile nav
+            var burger = document.getElementById("hamburger");
+            var links = document.getElementById("navLinks");
+            burger.addEventListener("click", function (e) {
+               e.stopPropagation();
+               var open = links.classList.toggle("open");
+               burger.classList.toggle("open", open);
+               burger.setAttribute("aria-expanded", open);
+            });
+            links.querySelectorAll("a").forEach(function (a) {
+               a.addEventListener("click", function () {
+                  links.classList.remove("open");
+                  burger.classList.remove("open");
+                  burger.setAttribute("aria-expanded", "false");
+               });
+            });
+         })();
+
+         (function () {
+            var tabs = document.querySelectorAll(".tab");
+            var items = document.querySelectorAll(".project-item");
+            var viewBtns = document.querySelectorAll(".view-btn");
+            var cardView = document.getElementById("cardView");
+            var listView = document.getElementById("listView");
+            var cardEmpty = document.getElementById("cardEmpty");
+            var listEmpty = document.getElementById("listEmpty");
+
+            function applyFilter(cat) {
+               var visibleCount = 0;
+               items.forEach(function (el) {
+                  var cats = (el.dataset.cat || "").split(" ");
+                  var show = cat === "all" || cats.indexOf(cat) !== -1;
+                  el.style.display = show ? "" : "none";
+                  if (show) visibleCount++;
+               });
+               cardEmpty.style.display = visibleCount === 0 ? "" : "none";
+               listEmpty.style.display = visibleCount === 0 ? "" : "none";
+            }
+
+            tabs.forEach(function (tab) {
+               tab.addEventListener("click", function () {
+                  tabs.forEach(function (t) {
+                     t.classList.remove("active");
+                  });
+                  tab.classList.add("active");
+                  applyFilter(tab.dataset.cat);
+               });
+            });
+
+            viewBtns.forEach(function (btn) {
+               btn.addEventListener("click", function () {
+                  viewBtns.forEach(function (b) {
+                     b.classList.remove("active");
+                  });
+                  btn.classList.add("active");
+                  var view = btn.dataset.view;
+                  cardView.style.display = view === "card" ? "" : "none";
+                  listView.style.display = view === "list" ? "" : "none";
+               });
+            });
+
+            applyFilter("all");
+         })();
+      </script>
+   </body>
+</html>

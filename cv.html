@@ -3,7 +3,7 @@
    <head>
       <meta charset="UTF-8" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <title>Saifur Rahman — Software Engineer</title>
+      <title>CV — Saifur Rahman</title>
       <meta
          name="description"
          content="Portfolio of Saifur Rahman — Software Engineer (.NET & JavaScript). Projects, experience, publications, and CV."
@@ -26,9 +26,9 @@
             --accent-soft: #edf1fc;
 
             --nav-bg: rgba(255, 255, 255, 0.6);
-            --nav-bg-mobile: rgba(255, 255, 255, 1);
             --nav-border: rgba(255, 255, 255, 0.7);
             --nav-inset: rgba(255, 255, 255, 0.55);
+            --nav-bg-mobile: rgba(255, 255, 255, 1);
             --nav-hover: rgba(26, 26, 26, 0.05);
 
             --footer-bg: #000000;
@@ -38,14 +38,6 @@
             --sans: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
             --mono: "IBM Plex Mono", ui-monospace, monospace;
             --maxw: 780px;
-
-            --term-bg: #f6f6f4;
-            --term-header: #ececea;
-            --term-border: #d8d7d2;
-            --term-ink: #232323;
-            --term-muted: #85847d;
-            --term-prompt: #223b7e;
-            --term-err: #a3352c;
          }
          [data-theme="dark"] {
             --bg: #262626;
@@ -66,14 +58,6 @@
             --footer-bg: #1c1c1c;
             --footer-ink: #f2f2f2;
             --footer-muted: #9b9b9b;
-
-            --term-bg: #0c0c0c;
-            --term-header: #1c1c1c;
-            --term-border: #303030;
-            --term-ink: #ececec;
-            --term-muted: #7f7f7f;
-            --term-prompt: #85a4ff;
-            --term-err: #ff8a80;
          }
          * {
             box-sizing: border-box;
@@ -107,14 +91,6 @@
          }
          button {
             font-family: inherit;
-         }
-         .sr-only {
-            position: absolute;
-            width: 1px;
-            height: 1px;
-            overflow: hidden;
-            clip: rect(0, 0, 0, 0);
-            white-space: nowrap;
          }
 
          /* ---------- NAVBAR (glass) ---------- */
@@ -303,7 +279,7 @@
             width: 100%;
          }
          .page-head {
-            padding-top: 100px;
+            padding-top: 70px;
             padding-bottom: 8px;
          }
          section {
@@ -314,6 +290,7 @@
             font-size: 0.75rem;
             letter-spacing: 0.06em;
             color: var(--faint);
+            margin-top: 22px;
             margin-bottom: 10px;
          }
          .section-title {
@@ -429,154 +406,507 @@
             font-weight: 500;
          }
 
-         /* ---------- SKILLS TERMINAL ---------- */
-         .skills-wrap {
-            margin-top: 36px;
-         }
-         .skills-hint {
-            font-size: 0.85rem;
-            color: var(--muted);
-            margin-bottom: 12px;
-         }
-         .skills-hint code {
-            font-family: var(--mono);
-            background: var(--accent-soft);
-            color: var(--accent);
-            padding: 1px 6px;
-            border-radius: 4px;
-            font-size: 0.8rem;
-         }
-         .skills-terminal {
-            border-radius: 10px;
-            overflow: hidden;
-            border: 1px solid var(--term-border);
-            background: var(--term-bg);
-            box-shadow: 0 10px 28px rgba(0, 0, 0, 0.1);
-         }
-         .skills-terminal.shake {
-            animation: termShake 0.4s ease;
-         }
-         @keyframes termShake {
-            10%,
-            90% {
-               transform: translateX(-1px);
-            }
-            20%,
-            80% {
-               transform: translateX(2px);
-            }
-            30%,
-            50%,
-            70% {
-               transform: translateX(-3px);
-            }
-            40%,
-            60% {
-               transform: translateX(3px);
-            }
-         }
-         .term-titlebar {
+         /* ---------- PROJECTS TOOLBAR ---------- */
+         .projects-toolbar {
             display: flex;
-            align-items: center;
             justify-content: space-between;
-            padding: 7px 8px 7px 12px;
-            background: var(--term-header);
-            border-bottom: 1px solid var(--term-border);
-            user-select: none;
+            align-items: center;
+            gap: 16px;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
+            padding-bottom: 18px;
+            border-bottom: 1px solid var(--line);
          }
-         .term-title {
+         .tabs {
+            display: flex;
+            gap: 4px;
+            overflow-x: auto;
+            scrollbar-width: none;
+            flex: 1 1 auto;
+         }
+         .tabs::-webkit-scrollbar {
+            display: none;
+         }
+         .tab {
             display: flex;
             align-items: center;
-            gap: 8px;
-            font-size: 0.78rem;
-            font-weight: 600;
-            color: var(--term-muted);
-         }
-         .term-controls {
-            display: flex;
-            gap: 2px;
-         }
-         .term-btn {
-            width: 28px;
-            height: 22px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 4px;
-            color: var(--term-muted);
+            gap: 6px;
+            white-space: nowrap;
             background: transparent;
-            border: none;
+            border: 1px solid transparent;
+            color: var(--muted);
+            padding: 7px 12px;
+            border-radius: 9px;
+            font-size: 0.82rem;
+            font-weight: 500;
             cursor: pointer;
-            font-size: 0.75rem;
-            line-height: 1;
             transition:
                background 0.15s ease,
                color 0.15s ease;
          }
-         .term-btn:hover {
-            background: var(--nav-hover);
-            color: var(--term-ink);
+         .tab:hover {
+            background: var(--accent-soft);
+            color: var(--ink);
          }
-         .term-btn.close:hover {
-            background: #e0463e;
-            color: #fff;
-         }
-         .term-body {
-            padding: 14px 16px 12px;
-            font-family: var(--mono);
-            font-size: 0.82rem;
-            line-height: 1.6;
-            color: var(--term-ink);
-            max-height: 320px;
-            overflow-y: auto;
-            cursor: text;
-            transition: max-height 0.2s ease;
-         }
-         .term-body.maximized {
-            max-height: 480px;
-         }
-         .term-body.minimized {
-            display: none;
-         }
-         .term-output {
-            white-space: pre-wrap;
-            word-break: break-word;
-         }
-         .term-output .cmd-echo {
-            color: var(--term-ink);
-         }
-         .term-output .dir-name {
-            color: var(--term-prompt);
+         .tab.active {
+            background: var(--accent-soft);
+            color: var(--accent);
             font-weight: 600;
          }
-         .term-output .err {
-            color: var(--term-err);
+         .view-toggle {
+            display: flex;
+            gap: 2px;
+            border: 1px solid var(--line);
+            border-radius: 9px;
+            padding: 3px;
+            flex-shrink: 0;
          }
-         .term-output .muted {
-            color: var(--term-muted);
-         }
-         .term-inputline {
+         .view-btn {
             display: flex;
             align-items: center;
-            gap: 6px;
-            margin-top: 2px;
-         }
-         .term-prompt-label {
-            color: var(--term-prompt);
-            font-weight: 600;
-            white-space: nowrap;
-         }
-         .term-input {
-            flex: 1;
-            min-width: 40px;
+            justify-content: center;
+            width: 32px;
+            height: 28px;
             background: transparent;
             border: none;
-            outline: none;
-            color: var(--term-ink);
+            border-radius: 6px;
+            color: var(--faint);
+            cursor: pointer;
+            transition:
+               background 0.15s ease,
+               color 0.15s ease;
+         }
+         .view-btn:hover {
+            color: var(--ink);
+         }
+         .view-btn.active {
+            background: var(--surface);
+            color: var(--accent);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+         }
+
+         /* ---------- PROJECTS: CARD VIEW ---------- */
+         .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+         }
+         .card {
+            background: var(--surface);
+            border: 1px solid var(--line);
+            border-radius: 10px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transition:
+               border-color 0.18s ease,
+               transform 0.18s ease,
+               box-shadow 0.18s ease;
+         }
+         .card:hover {
+            border-color: var(--accent);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 24px rgba(0, 0, 0, 0.08);
+         }
+         .card-header {
+            position: relative;
+            height: 148px;
+            overflow: hidden;
+            border-bottom: 1px solid var(--line);
+         }
+         .card-header-img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: grayscale(20%);
+            transition: transform 0.35s ease;
+         }
+         .card:hover .card-header-img {
+            transform: scale(1.04);
+         }
+         .card-header-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+               to bottom,
+               rgba(0, 0, 0, 0.04) 35%,
+               rgba(0, 0, 0, 0.72) 100%
+            );
+         }
+         .card-header-content {
+            position: absolute;
+            inset: 0;
+            padding: 14px 16px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+         }
+         .card-header h3 {
+            font-weight: 700;
+            font-size: 1.05rem;
+            letter-spacing: -0.01em;
+            color: #fdfdfc;
+            text-shadow: 0 1px 6px rgba(0, 0, 0, 0.45);
+            margin-bottom: 9px;
+         }
+         .card .stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+         }
+         .card .stack span {
             font-family: var(--mono);
+            font-size: 0.62rem;
+            font-weight: 500;
+            letter-spacing: 0.03em;
+            color: #fdfdfc;
+            background: rgba(255, 255, 255, 0.14);
+            border: 1px solid rgba(255, 255, 255, 0.32);
+            padding: 2px 7px;
+            border-radius: 4px;
+            backdrop-filter: blur(2px);
+         }
+         .card-body {
+            padding: 16px 20px 20px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+         }
+         .card p {
+            font-size: 0.92rem;
+            color: var(--muted);
+            margin-bottom: 16px;
+            flex-grow: 1;
+         }
+         .card-actions {
+            display: flex;
+            gap: 18px;
+            font-size: 0.85rem;
+            font-weight: 600;
+         }
+         .card-actions a {
+            color: var(--accent);
+         }
+         .card-actions a:hover {
+            text-decoration: underline;
+         }
+
+         /* ---------- PROJECTS: LIST VIEW ---------- */
+         .projects-list {
+            display: flex;
+            flex-direction: column;
+            border-top: 1px solid var(--line);
+         }
+         .list-row {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            padding: 16px 6px;
+            border-bottom: 1px solid var(--line);
+            transition: background 0.15s ease;
+         }
+         .list-row:hover {
+            background: var(--accent-soft);
+         }
+         .list-thumb {
+            width: 56px;
+            height: 56px;
+            border-radius: 8px;
+            overflow: hidden;
+            flex-shrink: 0;
+            border: 1px solid var(--line);
+         }
+         .list-thumb img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: grayscale(15%);
+         }
+         .list-main {
+            flex: 1 1 auto;
+            min-width: 0;
+         }
+         .list-main h3 {
+            font-size: 0.98rem;
+            font-weight: 700;
+            margin-bottom: 3px;
+         }
+         .list-main p {
+            font-size: 0.85rem;
+            color: var(--muted);
+            margin-bottom: 6px;
+         }
+         .list-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+         }
+         .list-stack span {
+            font-family: var(--mono);
+            font-size: 0.62rem;
+            color: var(--muted);
+            background: var(--bg);
+            border: 1px solid var(--line);
+            padding: 1px 6px;
+            border-radius: 4px;
+         }
+         .list-actions {
+            display: flex;
+            gap: 14px;
             font-size: 0.82rem;
-            caret-color: var(--term-prompt);
-            padding: 0;
+            font-weight: 600;
+            flex-shrink: 0;
+         }
+         .list-actions a {
+            color: var(--accent);
+         }
+         .list-actions a:hover {
+            text-decoration: underline;
+         }
+         .empty-state {
+            padding: 40px 6px;
+            text-align: center;
+            color: var(--faint);
+            font-size: 0.9rem;
+         }
+
+         .pjt-git-link {
+            font-size: 0.88rem;
+            color: var(--muted);
+            margin-top: 28px;
+         }
+         .pjt-git-link a {
+            color: var(--accent);
+         }
+         .pjt-git-link a:hover {
+            text-decoration: underline;
+         }
+
+         /* ---------- EXPERIENCE ---------- */
+         .timeline {
+            display: flex;
+            flex-direction: column;
+            gap: 34px;
+         }
+         .tl-item {
+            border-left: 2px solid var(--line);
+            padding-left: 22px;
+         }
+         .tl-company {
+            font-weight: 700;
+            font-size: 1.02rem;
+         }
+         .tl-role {
+            font-family: var(--mono);
+            font-size: 0.78rem;
+            color: var(--muted);
+            margin-top: 4px;
+         }
+         .tl-date {
+            font-size: 0.78rem;
+            color: var(--faint);
+            margin: 6px 0 12px;
+         }
+         .tl-item ul {
+            list-style: none;
+         }
+         .tl-item li {
+            padding-left: 16px;
+            position: relative;
+            margin-bottom: 7px;
+            font-size: 0.92rem;
+            color: var(--muted);
+         }
+         .tl-item li::before {
+            content: "\2013";
+            position: absolute;
+            left: 0;
+            color: var(--faint);
+         }
+
+         /* ---------- PUBLICATIONS ---------- */
+         .pub {
+            border-left: 2px solid var(--accent);
+            padding-left: 20px;
+         }
+         .pub-title {
+            font-weight: 700;
+            font-size: 1.08rem;
+            margin-bottom: 8px;
+            line-height: 1.35;
+         }
+         .pub-authors {
+            font-size: 0.92rem;
+            color: var(--muted);
+            margin-bottom: 4px;
+         }
+         .pub-main-author {
+            color: var(--ink);
+            font-weight: 600;
+         }
+         .pub-venue {
+            font-size: 0.88rem;
+            color: var(--muted);
+            font-style: italic;
+            margin-bottom: 8px;
+         }
+         .pub-meta {
+            font-family: var(--mono);
+            font-size: 0.78rem;
+            color: var(--faint);
+         }
+         .pub-meta a {
+            color: var(--accent);
+         }
+         .pub-meta a:hover {
+            text-decoration: underline;
+         }
+
+         /* ---------- CV ---------- */
+         .cv-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+            flex-wrap: wrap;
+            gap: 16px;
+         }
+         .cv-actions p {
+            color: var(--muted);
+            font-size: 0.92rem;
+            max-width: 420px;
+         }
+         .btn-download {
+            background: var(--ink);
+            color: var(--bg);
+            border: none;
+            border-radius: 7px;
+            padding: 11px 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition:
+               background 0.15s ease,
+               color 0.15s ease;
+         }
+         .btn-download:hover {
+            background: var(--accent);
+            color: #fff;
+         }
+         .cv-frame-container {
+            width: 100%;
+         }
+         .cv-frame {
+            width: 100%;
+            height: 620px;
+            border: 1px solid var(--line);
+            border-radius: 10px;
+            background: var(--surface);
+         }
+         .cv-note {
+            font-size: 0.82rem;
+            color: var(--faint);
+            margin-top: 12px;
+            text-align: center;
+         }
+
+         /* ---------- CONTACT ---------- */
+         .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 48px;
+         }
+         .contact-info p.intro {
+            color: var(--muted);
+            margin-bottom: 22px;
+         }
+         .ci-list {
+            display: flex;
+            flex-direction: column;
+         }
+         .ci-row {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 14px 0;
+            border-bottom: 1px solid var(--line);
+         }
+         .ci-row:last-child {
+            border-bottom: none;
+         }
+         .ci-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            background: var(--accent-soft);
+            color: var(--accent);
+            flex-shrink: 0;
+         }
+         .ci-label {
+            font-family: var(--mono);
+            font-size: 0.72rem;
+            color: var(--faint);
+            margin-bottom: 3px;
+         }
+         .ci-value {
+            font-size: 0.98rem;
+            font-weight: 600;
+         }
+         .ci-value a:hover {
+            text-decoration: underline;
+         }
+
+         form {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+         }
+         form label {
+            font-size: 0.78rem;
+            color: var(--muted);
+            margin-bottom: -6px;
+         }
+         form input,
+         form textarea {
+            background: var(--surface);
+            border: 1px solid var(--line);
+            border-radius: 7px;
+            padding: 11px 13px;
+            font-family: var(--sans);
+            font-size: 0.92rem;
+            color: var(--ink);
+            outline: none;
+            transition: border-color 0.15s;
+         }
+         form input:focus,
+         form textarea:focus {
+            border-color: var(--accent);
+         }
+         form textarea {
+            min-height: 120px;
+            resize: vertical;
+         }
+         form button {
+            background: var(--ink);
+            color: var(--bg);
+            border: none;
+            border-radius: 7px;
+            padding: 12px;
+            font-size: 0.88rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition:
+               background 0.15s,
+               color 0.15s;
+         }
+         form button:hover {
+            background: var(--accent);
+            color: #fff;
          }
 
          /* ---------- FOOTER ---------- */
@@ -625,6 +955,10 @@
 
          /* ---------- RESPONSIVE ---------- */
          @media (max-width: 700px) {
+            .contact-grid {
+               grid-template-columns: 1fr;
+               gap: 32px;
+            }
             section {
                padding: 36px 0 56px;
             }
@@ -672,12 +1006,11 @@
                width: 100%;
                padding: 12px 14px;
             }
-            .page-head {
-               padding-top: 80px;
+            .cv-frame {
+               height: 420px;
             }
-            .term-body {
-               max-height: 260px;
-               font-size: 0.78rem;
+            .page-head {
+               padding-top: 70px;
             }
          }
       </style>
@@ -687,11 +1020,11 @@
          <nav class="nav" aria-label="Primary">
             <a href="index.html" class="logo">Saifur Rahman</a>
             <ul class="nav-links" id="navLinks">
-               <li><a href="index.html" class="active">Home</a></li>
+               <li><a href="index.html">Home</a></li>
                <li><a href="projects.html">Projects</a></li>
                <li><a href="experience.html">Experience</a></li>
                <li><a href="publications.html">Publications</a></li>
-               <li><a href="cv.html">CV</a></li>
+               <li><a href="cv.html" class="active">CV</a></li>
                <li><a href="contact.html">Contact</a></li>
             </ul>
             <div class="nav-right">
@@ -778,176 +1111,21 @@
 
       <main>
          <section class="page-head">
-            <h1 class="hero-name">Saifur Rahman</h1>
-            <p class="hero-role">Software Engineer — .NET, SQL &amp; JavaScript</p>
-            <p class="hero-bio">
-               I build full-stack web apps, mostly with ASP.NET Core and the JS ecosystem.
-               Still early in my career, but I've shipped a fair number of side projects
-               and enjoy the unglamorous parts of the work as much as the fun parts.
-            </p>
-            <div class="hero-links">
-               <a
-                  target="_blank"
-                  href="https://www.linkedin.com/in/saifur-rahman-4184b3244/"
-                  >LinkedIn</a
+            <div class="eyebrow">Curriculum Vitae</div>
+            <div class="cv-actions">
+               <p>A complete record of education, employment, and academic service.</p>
+               <a class="btn-download" href="Saifur Rahman.pdf" download
+                  >Download CV &darr;</a
                >
-               <a target="_blank" href="https://github.com/saif-gitreps">GitHub</a>
-               <a href="mailto:saifrahman3092@gmail.com">saifrahman3092@gmail.com</a>
             </div>
-            <div class="stats-row">
-               <div class="stat">
-                  <span class="num" id="yoe"></span><span class="label">Experience</span>
-               </div>
-               <div class="stat">
-                  <span class="num">20+</span><span class="label">projects</span>
-               </div>
-               <div class="stat">
-                  <span class="num">1</span><span class="label">publication</span>
-               </div>
-               <div class="stat">
-                  <span class="num">600+</span
-                  ><span class="label">DSA problems solved</span>
-               </div>
+            <div class="cv-frame-container">
+               <iframe
+                  class="cv-frame"
+                  src="Saifur Rahman.pdf"
+                  title="Saifur Rahman — CV"
+               ></iframe>
             </div>
-
-            <div class="about-block">
-               <div class="eyebrow">About</div>
-               <h2 class="section-title">A brief introduction</h2>
-               <div class="bio">
-                  <p>
-                     I'm a full-stack software engineer with expertise in JavaScript and
-                     ASP.NET Core, and I'm comfortable writing the SQL to back them.
-                  </p>
-                  <p>
-                     I haven't started my professional career yet, but I've been a
-                     hobbyist programmer for 3+ years now, and have solved 600+ Data
-                     Structure and Algorithm problems along the way.
-                  </p>
-                  <p>
-                     Outside of coding, I mostly scroll reels or explore Google Maps
-                     Street View for fun.
-                  </p>
-               </div>
-
-               <noscript>
-                  <div class="skills">
-                     <div class="skill-group">
-                        <h4>Languages</h4>
-                        <div class="tags">
-                           <span class="tag">TypeScript</span
-                           ><span class="tag">JavaScript</span><span class="tag">C#</span
-                           ><span class="tag">Python</span><span class="tag">SQL</span>
-                        </div>
-                     </div>
-                     <div class="skill-group">
-                        <h4>Frameworks</h4>
-                        <div class="tags">
-                           <span class="tag">React</span
-                           ><span class="tag">ASP.NET Core</span
-                           ><span class="tag">Express.js</span
-                           ><span class="tag">Next.js</span><span class="tag">Redux</span>
-                        </div>
-                     </div>
-                     <div class="skill-group">
-                        <h4>AI / ML</h4>
-                        <div class="tags">
-                           <span class="tag">Pandas</span><span class="tag">NumPy</span
-                           ><span class="tag">Keras</span
-                           ><span class="tag">Matplotlib</span
-                           ><span class="tag">OpenCV</span><span class="tag">NLP</span>
-                        </div>
-                     </div>
-                     <div class="skill-group">
-                        <h4>Tools</h4>
-                        <div class="tags">
-                           <span class="tag">Docker</span><span class="tag">Cursor</span
-                           ><span class="tag">Claude</span><span class="tag">Git</span
-                           ><span class="tag">Postman</span
-                           ><span class="tag">Appwrite</span>
-                        </div>
-                     </div>
-                     <div class="skill-group">
-                        <h4>Databases</h4>
-                        <div class="tags">
-                           <span class="tag">PostgreSQL</span
-                           ><span class="tag">Redis</span><span class="tag">MongoDB</span
-                           ><span class="tag">Entity FW.</span
-                           ><span class="tag">Prisma</span>
-                        </div>
-                     </div>
-                  </div>
-               </noscript>
-
-               <div class="skills-wrap">
-                  <p class="skills-hint">
-                     Poke around my skills like a shell — type <code>help</code> and hit
-                     Enter, or jump straight to <code>dir skills-languages</code>.
-                  </p>
-                  <div class="skills-terminal" id="skillsTerminal">
-                     <div class="term-titlebar">
-                        <div class="term-title">
-                           <svg
-                              width="14"
-                              height="14"
-                              viewBox="0 0 18 18"
-                              fill="none"
-                              stroke="currentColor"
-                              stroke-width="1.4"
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
-                           >
-                              <rect x="1.5" y="2.5" width="15" height="13" rx="1.3" />
-                              <path d="M4 6l3 2.5L4 11M9 11.5h5" />
-                           </svg>
-                           <span>Windows PowerShell — Skills.exe</span>
-                        </div>
-                        <div class="term-controls">
-                           <button
-                              class="term-btn"
-                              id="termMin"
-                              aria-label="Minimize terminal"
-                              type="button"
-                           >
-                              &#9472;
-                           </button>
-                           <button
-                              class="term-btn"
-                              id="termMax"
-                              aria-label="Toggle terminal size"
-                              type="button"
-                           >
-                              &#9633;
-                           </button>
-                           <button
-                              class="term-btn close"
-                              id="termClose"
-                              aria-label="Close terminal"
-                              type="button"
-                           >
-                              &times;
-                           </button>
-                        </div>
-                     </div>
-                     <div class="term-body" id="termBody">
-                        <div class="term-output" id="termOutput"></div>
-                        <div class="term-inputline">
-                           <span class="term-prompt-label" id="termPromptLabel"
-                              >PS C:\Users\Saifur\Skills&gt;</span
-                           >
-                           <input
-                              class="term-input"
-                              id="termInput"
-                              type="text"
-                              autocomplete="off"
-                              autocapitalize="off"
-                              spellcheck="false"
-                              aria-label="Terminal command input"
-                           />
-                        </div>
-                     </div>
-                  </div>
-               </div>
-            </div>
+            <p class="cv-note">PDF not loading? Use the download button above.</p>
          </section>
       </main>
 
@@ -1092,282 +1270,6 @@
                   burger.classList.remove("open");
                   burger.setAttribute("aria-expanded", "false");
                });
-            });
-         })();
-
-         (function () {
-            var yeoSpan = document.getElementById("yoe");
-            if (!yeoSpan) return;
-            var currentDate = new Date();
-            var years = currentDate.getFullYear() - 2023;
-            yeoSpan.innerHTML = years + "+ years";
-         })();
-
-         // ---- skills terminal ----
-         (function () {
-            var output = document.getElementById("termOutput");
-            var input = document.getElementById("termInput");
-            var body = document.getElementById("termBody");
-            var terminal = document.getElementById("skillsTerminal");
-            var minBtn = document.getElementById("termMin");
-            var maxBtn = document.getElementById("termMax");
-            var closeBtn = document.getElementById("termClose");
-            var promptLabel = document.getElementById("termPromptLabel");
-            if (!output || !input) return;
-
-            var PROMPT = "PS C:\\Users\\Saifur\\Skills>";
-            var DIRS = {
-               "skills-languages": ["TypeScript", "JavaScript", "C#", "Python", "SQL"],
-               "skills-frameworks": [
-                  "React",
-                  "ASP.NET Core",
-                  "Express.js",
-                  "Next.js",
-                  "Redux",
-               ],
-               "skills-ai-ml": [
-                  "Pandas",
-                  "NumPy",
-                  "Keras",
-                  "Matplotlib",
-                  "OpenCV",
-                  "NLP",
-               ],
-               "skills-tools": [
-                  "Docker",
-                  "Cursor",
-                  "Claude",
-                  "Git",
-                  "Postman",
-                  "Appwrite",
-               ],
-               "skills-databases": [
-                  "PostgreSQL",
-                  "Redis",
-                  "MongoDB",
-                  "Entity FW.",
-                  "Prisma",
-               ],
-            };
-
-            function escapeHtml(s) {
-               return s
-                  .replace(/&/g, "&amp;")
-                  .replace(/</g, "&lt;")
-                  .replace(/>/g, "&gt;");
-            }
-
-            function dateStamp() {
-               var d = new Date();
-               var mo = d.getMonth() + 1,
-                  da = d.getDate(),
-                  yr = d.getFullYear();
-               var h = d.getHours();
-               var ampm = h >= 12 ? "PM" : "AM";
-               var h12 = h % 12 || 12;
-               var mi = ("0" + d.getMinutes()).slice(-2);
-               return mo + "/" + da + "/" + yr + "  " + h12 + ":" + mi + " " + ampm;
-            }
-
-            function printHtml(html) {
-               var line = document.createElement("div");
-               line.innerHTML = html;
-               output.appendChild(line);
-            }
-
-            function printText(text, cls) {
-               var line = document.createElement("div");
-               if (cls) line.className = cls;
-               line.textContent = text;
-               output.appendChild(line);
-            }
-
-            function printBlock(text) {
-               var pre = document.createElement("div");
-               pre.textContent = text;
-               output.appendChild(pre);
-            }
-
-            function scrollBottom() {
-               body.scrollTop = body.scrollHeight;
-            }
-
-            function listingHeader(path) {
-               return (
-                  "\n    Directory: " +
-                  path +
-                  "\n\n" +
-                  "Mode".padEnd(9) +
-                  "LastWriteTime".padEnd(23) +
-                  "Length".padStart(6) +
-                  "  Name\n" +
-                  "----".padEnd(9) +
-                  "-------------".padEnd(23) +
-                  "------".padStart(6) +
-                  "  ----"
-               );
-            }
-
-            function runDir(arg) {
-               if (!arg) {
-                  printBlock(listingHeader("C:\\Users\\Saifur\\Skills"));
-                  Object.keys(DIRS).forEach(function (name) {
-                     printHtml(
-                        "d-----".padEnd(9) +
-                           dateStamp().padEnd(23) +
-                           "".padStart(6) +
-                           '  <span class="dir-name">' +
-                           escapeHtml(name) +
-                           "</span>",
-                     );
-                  });
-                  return;
-               }
-               var key = arg.toLowerCase();
-               if (!DIRS[key]) {
-                  printText(
-                     "Cannot find path 'C:\\Users\\Saifur\\Skills\\" +
-                        arg +
-                        "' because it does not exist.",
-                     "err",
-                  );
-                  return;
-               }
-               printBlock(listingHeader("C:\\Users\\Saifur\\Skills\\" + key));
-               DIRS[key].forEach(function (name) {
-                  var fname = name + ".skill";
-                  printText(
-                     "-a----".padEnd(9) +
-                        dateStamp().padEnd(23) +
-                        String(name.length).padStart(6) +
-                        "  " +
-                        fname,
-                  );
-               });
-            }
-
-            function runHelp() {
-               var cats = Object.keys(DIRS).join(", ");
-               printBlock(
-                  "Available commands:\n" +
-                     "  dir [category]     list skill categories, or the skills inside one\n" +
-                     "  ls  [category]     alias for dir\n" +
-                     "  cat about.txt      quick bio\n" +
-                     "  whoami             who you're looking at\n" +
-                     "  clear / cls        clear the screen\n" +
-                     "  help               show this message\n\n" +
-                     "Categories: " +
-                     cats +
-                     "\n\n" +
-                     "Try:  dir skills-languages",
-               );
-            }
-
-            function handleCommand(raw) {
-               var trimmed = raw.trim();
-               printHtml(
-                  '<span class="cmd-echo">' +
-                     escapeHtml(PROMPT) +
-                     " " +
-                     escapeHtml(trimmed) +
-                     "</span>",
-               );
-               if (!trimmed) return;
-
-               var parts = trimmed.split(/\s+/);
-               var cmd = parts[0].toLowerCase();
-               var arg = parts.slice(1).join(" ");
-
-               if (cmd === "help") {
-                  runHelp();
-               } else if (cmd === "dir" || cmd === "ls") {
-                  runDir(arg);
-               } else if (cmd === "clear" || cmd === "cls") {
-                  output.innerHTML = "";
-               } else if (cmd === "whoami") {
-                  printText("saifur\\rahman");
-               } else if (cmd === "cat" && arg.toLowerCase() === "about.txt") {
-                  printBlock(
-                     "Full-stack engineer working mainly in ASP.NET Core and the JS\n" +
-                        "ecosystem. Early career, 600+ DSA problems solved, still figures\n" +
-                        "out edge cases by reading the stack trace twice.",
-                  );
-               } else {
-                  printText(
-                     "'" +
-                        trimmed +
-                        "' is not recognized as the name of a cmdlet, function, " +
-                        "script file, or operable program. Check the spelling of the " +
-                        "name, or if a path was included, verify that the path is " +
-                        "correct and try again.",
-                     "err",
-                  );
-               }
-               scrollBottom();
-            }
-
-            printBlock(
-               "Windows PowerShell\n" +
-                  "Copyright (C) Microsoft Corporation. All rights reserved.\n",
-            );
-            printHtml(
-               'Type <span class="dir-name">help</span> to see available commands, ' +
-                  'or try <span class="dir-name">dir</span> to list skill categories.',
-            );
-
-            var history = [];
-            var historyIndex = -1;
-
-            input.addEventListener("keydown", function (e) {
-               if (e.key === "Enter") {
-                  var val = input.value;
-                  handleCommand(val);
-                  if (val.trim()) {
-                     history.push(val);
-                     historyIndex = history.length;
-                  }
-                  input.value = "";
-               } else if (e.key === "ArrowUp") {
-                  if (historyIndex > 0) {
-                     historyIndex--;
-                     input.value = history[historyIndex];
-                     requestAnimationFrame(function () {
-                        input.setSelectionRange(input.value.length, input.value.length);
-                     });
-                  }
-                  e.preventDefault();
-               } else if (e.key === "ArrowDown") {
-                  if (historyIndex < history.length - 1) {
-                     historyIndex++;
-                     input.value = history[historyIndex];
-                  } else {
-                     historyIndex = history.length;
-                     input.value = "";
-                  }
-                  e.preventDefault();
-               }
-            });
-
-            body.addEventListener("click", function (e) {
-               if (e.target !== input) input.focus();
-            });
-
-            minBtn.addEventListener("click", function () {
-               body.classList.toggle("minimized");
-            });
-            maxBtn.addEventListener("click", function () {
-               body.classList.toggle("maximized");
-               scrollBottom();
-            });
-            closeBtn.addEventListener("click", function () {
-               printText("Nice try — this terminal doesn't close that easily.", "muted");
-               scrollBottom();
-               terminal.classList.remove("shake");
-               void terminal.offsetWidth;
-               terminal.classList.add("shake");
-               setTimeout(function () {
-                  terminal.classList.remove("shake");
-               }, 400);
             });
          })();
       </script>
