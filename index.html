@@ -14,675 +14,9 @@
          href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap"
          rel="stylesheet"
       />
-      <style>
-         :root {
-            --bg: #fbfbfa;
-            --surface: #ffffff;
-            --ink: #1a1a1a;
-            --muted: #6b6b6b;
-            --faint: #9a9a94;
-            --line: #e6e5e1;
-            --accent: #223b7e;
-            --accent-soft: #edf1fc;
-
-            --nav-bg: rgba(255, 255, 255, 0.6);
-            --nav-bg-mobile: rgba(255, 255, 255, 1);
-            --nav-border: rgba(255, 255, 255, 0.7);
-            --nav-inset: rgba(255, 255, 255, 0.55);
-            --nav-hover: rgba(26, 26, 26, 0.05);
-
-            --footer-bg: #000000;
-            --footer-ink: #f2f2f2;
-            --footer-muted: #a8a8a8;
-
-            --sans: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
-            --mono: "IBM Plex Mono", ui-monospace, monospace;
-            --maxw: 780px;
-
-            --term-bg: #f6f6f4;
-            --term-header: #ececea;
-            --term-border: #d8d7d2;
-            --term-ink: #232323;
-            --term-muted: #85847d;
-            --term-prompt: #223b7e;
-            --term-err: #a3352c;
-         }
-         [data-theme="dark"] {
-            --bg: #262626;
-            --surface: #313131;
-            --ink: #f2f2f2;
-            --muted: #b9b9b9;
-            --faint: #8d8d8d;
-            --line: #3f3f3f;
-            --accent: #85a4ff;
-            --accent-soft: rgba(133, 164, 255, 0.14);
-
-            --nav-bg: rgba(28, 28, 28, 0.55);
-            --nav-bg-mobile: rgba(28, 28, 28, 0.9);
-            --nav-border: rgba(255, 255, 255, 0.08);
-            --nav-inset: rgba(255, 255, 255, 0.06);
-            --nav-hover: rgba(255, 255, 255, 0.08);
-
-            --footer-bg: #1c1c1c;
-            --footer-ink: #f2f2f2;
-            --footer-muted: #9b9b9b;
-
-            --term-bg: #0c0c0c;
-            --term-header: #1c1c1c;
-            --term-border: #303030;
-            --term-ink: #ececec;
-            --term-muted: #7f7f7f;
-            --term-prompt: #85a4ff;
-            --term-err: #ff8a80;
-         }
-         * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-         }
-         html {
-            scroll-behavior: smooth;
-         }
-         body {
-            background: var(--bg);
-            color: var(--ink);
-            font-family: var(--sans);
-            font-size: 16px;
-            line-height: 1.65;
-            -webkit-font-smoothing: antialiased;
-            transition:
-               background 0.25s ease,
-               color 0.25s ease;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-         }
-         a {
-            color: inherit;
-            text-decoration: none;
-         }
-         img {
-            max-width: 100%;
-            display: block;
-         }
-         button {
-            font-family: inherit;
-         }
-         .sr-only {
-            position: absolute;
-            width: 1px;
-            height: 1px;
-            overflow: hidden;
-            clip: rect(0, 0, 0, 0);
-            white-space: nowrap;
-         }
-
-         /* ---------- NAVBAR (glass) ---------- */
-         .nav-wrap {
-            position: fixed;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 1000;
-
-            background: var(--nav-bg);
-            -webkit-backdrop-filter: blur(20px) saturate(180%);
-            backdrop-filter: blur(20px) saturate(180%);
-            border: 1px solid var(--nav-border);
-            box-shadow:
-               0 10px 30px rgba(0, 0, 0, 0.08),
-               inset 0 1px 0 var(--nav-inset);
-            transition:
-               background 0.25s ease,
-               border-color 0.25s ease;
-            width: 100%;
-         }
-         .nav {
-            padding: 8px 10px 8px 18px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 18px;
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
-         }
-         .logo {
-            font-weight: 700;
-            font-size: 0.95rem;
-            letter-spacing: -0.01em;
-            white-space: nowrap;
-         }
-         .nav-right {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-         }
-         .nav-links {
-            display: flex;
-            gap: 2px;
-            list-style: none;
-         }
-         .nav-links a {
-            position: relative;
-            display: inline-block;
-            padding: 8px 13px;
-            border-radius: 10px;
-            font-size: 0.83rem;
-            font-weight: 500;
-            color: var(--muted);
-            transition:
-               background 0.18s ease,
-               color 0.18s ease,
-               box-shadow 0.18s ease;
-         }
-         .nav-links a:hover {
-            color: var(--ink);
-            background: var(--nav-hover);
-            box-shadow:
-               inset 0 1px 1px rgba(255, 255, 255, 0.5),
-               0 2px 6px rgba(0, 0, 0, 0.05);
-         }
-         .nav-links a.active {
-            color: var(--accent);
-            background: var(--accent-soft);
-            font-weight: 600;
-         }
-
-         /* theme dropdown */
-         .theme-switch {
-            position: relative;
-         }
-         .theme-btn {
-            display: flex;
-            align-items: center;
-            gap: 5px;
-            background: transparent;
-            border: 1px solid var(--nav-border);
-            color: var(--muted);
-            border-radius: 10px;
-            padding: 7px 9px;
-            cursor: pointer;
-            transition:
-               background 0.18s ease,
-               color 0.18s ease;
-         }
-         .theme-btn:hover {
-            background: var(--nav-hover);
-            color: var(--ink);
-         }
-         .theme-btn svg {
-            display: block;
-         }
-         .theme-menu {
-            position: absolute;
-            top: calc(100% + 8px);
-            right: 0;
-            list-style: none;
-            min-width: 130px;
-            background: var(--nav-bg);
-            -webkit-backdrop-filter: blur(20px) saturate(180%);
-            backdrop-filter: blur(20px) saturate(180%);
-            border: 1px solid var(--nav-border);
-            border-radius: 12px;
-            box-shadow:
-               0 12px 28px rgba(0, 0, 0, 0.12),
-               inset 0 1px 0 var(--nav-inset);
-            padding: 6px;
-            opacity: 0;
-            transform: translateY(-6px) scale(0.98);
-            pointer-events: none;
-            transition:
-               opacity 0.16s ease,
-               transform 0.16s ease;
-         }
-         .theme-menu.open {
-            opacity: 1;
-            transform: translateY(0) scale(1);
-            pointer-events: auto;
-         }
-         .theme-menu li {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            padding: 8px 10px;
-            border-radius: 8px;
-            font-size: 0.83rem;
-            color: var(--muted);
-            cursor: pointer;
-            transition:
-               background 0.15s ease,
-               color 0.15s ease;
-         }
-         .theme-menu li:hover {
-            background: var(--nav-hover);
-            color: var(--ink);
-         }
-         .theme-menu li.selected {
-            color: var(--accent);
-            font-weight: 600;
-         }
-
-         .hamburger {
-            display: none;
-            background: none;
-            border: none;
-            cursor: pointer;
-            width: 34px;
-            height: 34px;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            gap: 5px;
-            padding: 0;
-         }
-         .hamburger span {
-            display: block;
-            width: 18px;
-            height: 1.6px;
-            background: var(--ink);
-            transition:
-               transform 0.25s,
-               opacity 0.25s;
-         }
-         .hamburger.open span:nth-child(1) {
-            transform: translateY(6.5px) rotate(45deg);
-         }
-         .hamburger.open span:nth-child(2) {
-            opacity: 0;
-         }
-         .hamburger.open span:nth-child(3) {
-            transform: translateY(-6.5px) rotate(-45deg);
-         }
-
-         /* ---------- LAYOUT ---------- */
-         main {
-            max-width: var(--maxw);
-            margin: 0 auto;
-            padding: 0 24px;
-            flex: 1 0 auto;
-            width: 100%;
-         }
-         .page-head {
-            padding-top: 100px;
-            padding-bottom: 8px;
-         }
-         section {
-            padding: 44px 0 76px;
-         }
-         .eyebrow {
-            font-family: var(--mono);
-            font-size: 0.75rem;
-            letter-spacing: 0.06em;
-            color: var(--faint);
-            margin-bottom: 10px;
-         }
-         .section-title {
-            font-weight: 700;
-            font-size: 1.7rem;
-            letter-spacing: -0.01em;
-            margin-bottom: 8px;
-         }
-         .section-sub {
-            color: var(--muted);
-            font-size: 0.95rem;
-            margin-bottom: 36px;
-            max-width: 520px;
-         }
-
-         /* ---------- HERO / ABOUT (home) ---------- */
-         .hero-name {
-            font-weight: 800;
-            font-size: clamp(2rem, 5.5vw, 2.9rem);
-            letter-spacing: -0.03em;
-            line-height: 1.1;
-            margin-bottom: 12px;
-         }
-         .hero-role {
-            font-size: 1.05rem;
-            color: var(--muted);
-            margin-bottom: 22px;
-         }
-         .hero-bio {
-            max-width: 100%;
-            color: var(--muted);
-            margin-bottom: 26px;
-         }
-         .hero-links {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px 18px;
-            font-size: 0.92rem;
-            margin-bottom: 40px;
-         }
-         .hero-links a {
-            color: var(--accent);
-            border-bottom: 1px solid transparent;
-         }
-         .hero-links a:hover {
-            border-bottom-color: var(--accent);
-         }
-         .stats-row {
-            display: flex;
-            gap: 32px;
-            flex-wrap: wrap;
-         }
-         .stat {
-            display: flex;
-            flex-direction: column;
-            gap: 2px;
-         }
-         .stat .num {
-            font-weight: 700;
-            font-size: 1.35rem;
-            letter-spacing: -0.01em;
-         }
-         .stat .label {
-            font-size: 0.78rem;
-            color: var(--faint);
-            font-family: var(--mono);
-         }
-
-         .about-block {
-            border-top: 1px solid var(--line);
-            padding-top: 56px;
-            margin-top: 8px;
-         }
-         .bio p {
-            margin-bottom: 16px;
-            color: var(--ink);
-         }
-         .bio p:last-child {
-            margin-bottom: 0;
-         }
-         .skills {
-            margin-top: 36px;
-         }
-         .skill-group {
-            margin-bottom: 16px;
-            display: flex;
-            gap: 14px;
-            align-items: baseline;
-            flex-wrap: wrap;
-         }
-         .skill-group:last-child {
-            margin-bottom: 0;
-         }
-         .skill-group h4 {
-            font-family: var(--mono);
-            font-size: 0.72rem;
-            color: var(--faint);
-            width: 92px;
-            flex-shrink: 0;
-            font-weight: 500;
-         }
-         .tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 7px;
-         }
-         .tag {
-            background: var(--accent-soft);
-            color: var(--accent);
-            padding: 3px 10px;
-            border-radius: 5px;
-            font-size: 0.8rem;
-            font-weight: 500;
-         }
-
-         /* ---------- SKILLS TERMINAL ---------- */
-         .skills-wrap {
-            margin-top: 36px;
-         }
-         .skills-hint {
-            font-size: 0.85rem;
-            color: var(--muted);
-            margin-bottom: 12px;
-         }
-         .skills-hint code {
-            font-family: var(--mono);
-            background: var(--accent-soft);
-            color: var(--accent);
-            padding: 1px 6px;
-            border-radius: 4px;
-            font-size: 0.8rem;
-         }
-         .skills-terminal {
-            border-radius: 10px;
-            overflow: hidden;
-            border: 1px solid var(--term-border);
-            background: var(--term-bg);
-            box-shadow: 0 10px 28px rgba(0, 0, 0, 0.1);
-         }
-         .skills-terminal.shake {
-            animation: termShake 0.4s ease;
-         }
-         @keyframes termShake {
-            10%,
-            90% {
-               transform: translateX(-1px);
-            }
-            20%,
-            80% {
-               transform: translateX(2px);
-            }
-            30%,
-            50%,
-            70% {
-               transform: translateX(-3px);
-            }
-            40%,
-            60% {
-               transform: translateX(3px);
-            }
-         }
-         .term-titlebar {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 7px 8px 7px 12px;
-            background: var(--term-header);
-            border-bottom: 1px solid var(--term-border);
-            user-select: none;
-         }
-         .term-title {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 0.78rem;
-            font-weight: 600;
-            color: var(--term-muted);
-         }
-         .term-controls {
-            display: flex;
-            gap: 2px;
-         }
-         .term-btn {
-            width: 28px;
-            height: 22px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 4px;
-            color: var(--term-muted);
-            background: transparent;
-            border: none;
-            cursor: pointer;
-            font-size: 0.75rem;
-            line-height: 1;
-            transition:
-               background 0.15s ease,
-               color 0.15s ease;
-         }
-         .term-btn:hover {
-            background: var(--nav-hover);
-            color: var(--term-ink);
-         }
-         .term-btn.close:hover {
-            background: #e0463e;
-            color: #fff;
-         }
-         .term-body {
-            padding: 14px 16px 12px;
-            font-family: var(--mono);
-            font-size: 0.82rem;
-            line-height: 1.6;
-            color: var(--term-ink);
-            max-height: 320px;
-            overflow-y: auto;
-            cursor: text;
-            transition: max-height 0.2s ease;
-         }
-         .term-body.maximized {
-            max-height: 480px;
-         }
-         .term-body.minimized {
-            display: none;
-         }
-         .term-output {
-            white-space: pre-wrap;
-            word-break: break-word;
-         }
-         .term-output .cmd-echo {
-            color: var(--term-ink);
-         }
-         .term-output .dir-name {
-            color: var(--term-prompt);
-            font-weight: 600;
-         }
-         .term-output .err {
-            color: var(--term-err);
-         }
-         .term-output .muted {
-            color: var(--term-muted);
-         }
-         .term-inputline {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            margin-top: 2px;
-         }
-         .term-prompt-label {
-            color: var(--term-prompt);
-            font-weight: 600;
-            white-space: nowrap;
-         }
-         .term-input {
-            flex: 1;
-            min-width: 40px;
-            background: transparent;
-            border: none;
-            outline: none;
-            color: var(--term-ink);
-            font-family: var(--mono);
-            font-size: 0.82rem;
-            caret-color: var(--term-prompt);
-            padding: 0;
-         }
-
-         /* ---------- FOOTER ---------- */
-         footer {
-            background: var(--footer-bg);
-            color: var(--footer-ink);
-            margin-top: 40px;
-            transition: background 0.25s ease;
-         }
-         .footer-inner {
-            max-width: var(--maxw);
-            margin: 0 auto;
-            padding: 40px 24px 34px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 18px;
-            text-align: center;
-         }
-         .f-name {
-            font-weight: 700;
-            font-size: 1rem;
-         }
-         .f-contact {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 10px 22px;
-         }
-         .f-contact a,
-         .f-contact span {
-            display: flex;
-            align-items: center;
-            gap: 7px;
-            font-size: 0.82rem;
-            color: var(--footer-muted);
-            transition: color 0.15s ease;
-         }
-         .f-contact a:hover {
-            color: var(--footer-ink);
-         }
-         .f-meta {
-            font-size: 0.76rem;
-            color: var(--footer-muted);
-         }
-
-         /* ---------- RESPONSIVE ---------- */
-         @media (max-width: 700px) {
-            section {
-               padding: 36px 0 56px;
-            }
-            .skill-group {
-               flex-direction: column;
-               gap: 8px;
-            }
-            .skill-group h4 {
-               width: auto;
-            }
-         }
-         @media (max-width: 640px) {
-            .hamburger {
-               display: flex;
-            }
-            .nav-links {
-               position: fixed;
-               top: 55px;
-               left: 14px;
-               right: 14px;
-               background: var(--nav-bg-mobile);
-               backdrop-filter: blur(20px) saturate(180%);
-               border: 1px solid var(--nav-border);
-               border-radius: 14px;
-               flex-direction: column;
-               gap: 2px;
-               padding: 10px;
-               max-height: 0;
-               overflow: hidden;
-               opacity: 0;
-               transition:
-                  max-height 0.3s ease,
-                  opacity 0.2s ease;
-               box-shadow: 0 14px 30px rgba(0, 0, 0, 0.14);
-            }
-            .nav-links.open {
-               max-height: 400px;
-               opacity: 1;
-            }
-            .nav-links li {
-               width: 100%;
-            }
-            .nav-links a {
-               display: block;
-               width: 100%;
-               padding: 12px 14px;
-            }
-            .page-head {
-               padding-top: 80px;
-            }
-            .term-body {
-               max-height: 260px;
-               font-size: 0.78rem;
-            }
-         }
-      </style>
+      <link rel="stylesheet" href="common.css" />
    </head>
-   <body>
+   <body class="page-home">
       <div class="nav-wrap">
          <nav class="nav" aria-label="Primary">
             <a href="index.html" class="logo">Saifur Rahman</a>
@@ -781,9 +115,10 @@
             <h1 class="hero-name">Saifur Rahman</h1>
             <p class="hero-role">Software Engineer — .NET, SQL &amp; JavaScript</p>
             <p class="hero-bio">
-               I build full-stack web apps, mostly with ASP.NET Core and the JS ecosystem.
-               Still early in my career, but I've shipped a fair number of side projects
-               and enjoy the unglamorous parts of the work as much as the fun parts.
+               I build full-stack softwares, mostly with ASP.NET Core and the JS & Node
+               ecosystem. Still early in my career, but I've shipped a fair number of side
+               projects and enjoy the unglamorous parts of the work as much as the fun
+               parts.
             </p>
             <div class="hero-links">
                <a
@@ -816,20 +151,23 @@
                <div class="bio">
                   <p>
                      I'm a full-stack software engineer with expertise in JavaScript and
-                     ASP.NET Core, and I'm comfortable writing the SQL to back them.
+                     .NET Webform & .NET Core, and I'm comfortable writing the SQL to back
+                     them.
                   </p>
                   <p>
-                     I haven't started my professional career yet, but I've been a
-                     hobbyist programmer for 3+ years now, and have solved 600+ Data
-                     Structure and Algorithm problems along the way.
+                     I started my professional career as a full-stack intern dev. I have
+                     also been a hobby programmer for 3+ years now, initiated and worked
+                     with a plethora of software projects, tried different technologies,
+                     understood what I liked to work with, and solved over 600+ data
+                     structure and algorithm problems along the way.
                   </p>
                   <p>
                      Outside of coding, I mostly scroll reels or explore Google Maps
-                     Street View for fun.
+                     Street View.
                   </p>
                </div>
 
-               <noscript>
+               <!-- <noscript>
                   <div class="skills">
                      <div class="skill-group">
                         <h4>Languages</h4>
@@ -876,12 +214,12 @@
                         </div>
                      </div>
                   </div>
-               </noscript>
+               </noscript> -->
 
                <div class="skills-wrap">
                   <p class="skills-hint">
-                     Poke around my skills like a shell — type <code>help</code> and hit
-                     Enter, or jump straight to <code>dir skills-languages</code>.
+                     Mess around with my terminal — type <code>help</code> and hit Enter,
+                     or jump straight to <code>dir skills-languages</code>.
                   </p>
                   <div class="skills-terminal" id="skillsTerminal">
                      <div class="term-titlebar">
@@ -953,7 +291,7 @@
 
       <footer>
          <div class="footer-inner">
-            <div class="f-name">Saifur Rahman</div>
+            <!-- <div class="f-name">Saifur Rahman</div> -->
             <div class="f-contact">
                <a href="mailto:saifrahman3092@gmail.com"
                   ><svg
@@ -1022,9 +360,7 @@
                   ><span>Bangladesh</span></span
                >
             </div>
-            <div class="f-meta">
-               &copy; 2026 Saifur Rahman &middot; Thanks for stopping by.
-            </div>
+            <div class="f-meta">Be well, visitor</div>
          </div>
       </footer>
 
@@ -1096,11 +432,17 @@
          })();
 
          (function () {
-            var yeoSpan = document.getElementById("yoe");
-            if (!yeoSpan) return;
             var currentDate = new Date();
-            var years = currentDate.getFullYear() - 2023;
-            yeoSpan.innerHTML = years + "+ years";
+            const start = new Date("2026-07-01");
+            const end = new Date(); // Keep as Date object
+
+            // Difference in milliseconds converted to years (365.25 days per year)
+            const diffInMs = end - start;
+            const diffInYears = diffInMs / (1000 * 60 * 60 * 24 * 365.25);
+
+            // Format to 1 decimal place using .toFixed(1)
+            yeoSpan = document.getElementById("yoe");
+            yeoSpan.innerHTML = `${diffInYears.toFixed(1)} years`;
          })();
 
          // ---- skills terminal ----
@@ -1117,10 +459,19 @@
 
             var PROMPT = "PS C:\\Users\\Saifur\\Skills>";
             var DIRS = {
-               "skills-languages": ["TypeScript", "JavaScript", "C#", "Python", "SQL"],
+               "skills-languages": [
+                  "TypeScript",
+                  "JavaScript",
+                  "C#",
+                  "Python",
+                  "SQL",
+                  "HTML",
+                  "CSS",
+               ],
                "skills-frameworks": [
                   "React",
                   "ASP.NET Core",
+                  ".NET WebForm",
                   "Express.js",
                   "Next.js",
                   "Redux",
@@ -1132,6 +483,7 @@
                   "Matplotlib",
                   "OpenCV",
                   "NLP",
+                  "Claude",
                ],
                "skills-tools": [
                   "Docker",
@@ -1289,8 +641,7 @@
                } else if (cmd === "cat" && arg.toLowerCase() === "about.txt") {
                   printBlock(
                      "Full-stack engineer working mainly in ASP.NET Core and the JS\n" +
-                        "ecosystem. Early career, 600+ DSA problems solved, still figures\n" +
-                        "out edge cases by reading the stack trace twice.",
+                        "ecosystem. Early career, 600+ DSA problems solved, and published a conference paper.",
                   );
                } else {
                   printText(
