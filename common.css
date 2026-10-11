@@ -1419,3 +1419,108 @@ body.page-home .page-head {
       transition: none !important;
    }
 }
+
+/* ============================================================
+   MOBILE FIXES
+   Kept at the very end so they override the rules above.
+   ============================================================ */
+
+/* Safety net: nothing is allowed to widen the page sideways */
+body {
+   overflow-x: clip;
+}
+
+/* ROOT CAUSE: the terminal's input line had a minimum width wider than a
+   phone screen, and the grid column grew to fit it. That pushed the bio,
+   the terminal and the whole page past the screen edge, so the browser
+   zoomed out. These rules let the terminal shrink instead. */
+.skills-terminal,
+.term-body,
+.term-inputline {
+   min-width: 0;
+   max-width: 100%;
+}
+.term-input {
+   flex: 1 1 0;
+   width: 0;
+   min-width: 0;
+}
+
+/* Project cards used a 300px minimum, which is wider than small phones */
+.projects-grid {
+   grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
+}
+
+@media (max-width: 700px) {
+   /* "1fr" can still be stretched by wide content; minmax(0, 1fr) cannot */
+   .stats-row,
+   .about-block {
+      grid-template-columns: minmax(0, 1fr);
+   }
+   .stats-row > *,
+   .about-block > * {
+      min-width: 0;
+   }
+
+   /* ledger rows: let long labels wrap instead of overflowing */
+   .stat {
+      gap: 10px;
+   }
+   .stat .label {
+      white-space: normal;
+   }
+   .stat::before {
+      min-width: 12px;
+   }
+
+   /* justified text leaves big gaps on narrow screens */
+   .bio p,
+   .tl-role,
+   .tl-item li,
+   .pub-venue,
+   .pub-abstract {
+      text-align: left;
+   }
+
+   /* tighter vertical rhythm on the home page */
+   .hero-name {
+      margin-bottom: 24px;
+   }
+   .hero-role::after {
+      height: 64px;
+      margin: 30px 0 6px;
+   }
+   .hero-bio::before {
+      margin-bottom: 30px;
+   }
+   .stats-row {
+      margin-top: 56px;
+   }
+   .about-block {
+      margin-top: 56px;
+   }
+   .skills-wrap {
+      margin-top: 56px;
+   }
+
+   /* terminal */
+   .term-body {
+      max-height: 260px;
+   }
+   .term-prompt-label {
+      white-space: normal;
+      word-break: break-all;
+   }
+}
+
+@media (max-width: 400px) {
+   .logo {
+      font-size: 1.3rem;
+   }
+   .nav {
+      gap: 10px;
+   }
+   .hero-links {
+      gap: 8px 22px;
+   }
+}
