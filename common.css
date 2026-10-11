@@ -990,6 +990,7 @@ form button:hover {
    display: grid;
    grid-template-columns: 1fr 1.2fr;
    gap: clamp(32px, 6vw, 80px);
+   margin-bottom: 35px;
 }
 .contact-info p.intro {
    font-family: var(--sans);
